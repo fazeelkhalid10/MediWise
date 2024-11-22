@@ -1,0 +1,147 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .headerScrolled {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .headerTransparent {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .navContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  .headerLogo {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .logoIcon {
+    margin-right: 0.5rem;
+  }
+  
+  .desktopNav {
+    display: none;
+  }
+  
+  .headerNavLink {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .headerNavLink:hover {
+    color: #fde68a;
+  }
+  
+  .headerIcon {
+    color: #ffffff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+    margin-left: 1rem;
+  }
+  
+  .headerIcon:hover {
+    color: #fde68a;
+  }
+  
+  .mobileMenuButton {
+    display: block;
+    color: #ffffff;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .mobileNav {
+    margin-top: 1rem;
+  }
+  
+  .mobileNavLink {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 0;
+  }
+  
+  .mobileIcons {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+  
+  .searchContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchForm {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
+  }
+  
+  .searchContainer.expanded .searchForm {
+    width: 200px;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+  
+  .searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  @media (min-width: 768px) {
+    .desktopNav {
+      display: flex;
+      align-items: center;
+    }
+  
+    .mobileMenuButton {
+      display: none;
+    }
+  
+    .mobileNav {
+      display: none;
+    }
+  }
+  
+  
