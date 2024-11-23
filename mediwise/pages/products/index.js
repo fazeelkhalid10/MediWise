@@ -2,6 +2,8 @@ import React from 'react';
 import Card from '../components/Card';
 import useProducts from '../hooks/useProducts';
 import styles from "@/styles/Products.module.css";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
 export default function Products() {
   const {
@@ -14,7 +16,9 @@ export default function Products() {
   } = useProducts();
 
   return (
+    <>
     <div className={styles.productsPage}>
+<Header/>
       <aside className={styles.sidebar}>
         <h2>Filters</h2>
         <div className={styles.filterSection}>
@@ -56,7 +60,10 @@ export default function Products() {
           <Card/>
         ))}
       </main>
+     
     </div>
+     <Footer/>
+     </>
   );
 }
 

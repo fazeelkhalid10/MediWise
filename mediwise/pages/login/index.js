@@ -14,7 +14,7 @@ export default function Login() {
   const { data: session } = useSession(); 
 
   if (session) {
-    router.push('/Register');
+    router.push('/login');
   }
 
 
@@ -107,9 +107,6 @@ export default function Login() {
           />
         </div>
 
-        <Link href="/forgotpassword" className={styles.forgotPassword}>
-          <span className={styles.forgotPassword}> Forgot Password? </span>
-        </Link>
 
         <MagneticButton onClick={handleSubmit} customStyle={true} customClass={styles.loginButton} className={styles.loginButton}>Login</MagneticButton>
 

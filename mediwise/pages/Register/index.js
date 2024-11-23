@@ -72,7 +72,8 @@ export default function Register() {
         setEmail("");
         setName("");
         setPassword("");
-        setSuccess("A verification email has been sent, verify it to continue");
+        setSuccess("Your Account has been created , Go to login...");
+        router.push('/login');
       } else {
         const errorData = await res.json(); 
         console.error("Error occurred while registering:", errorData);
@@ -109,7 +110,7 @@ export default function Register() {
 
         <p className={styles.Register}>Register</p>
         <p className={styles.text}>
-          Create an <span className={styles.highlight}><b>account</b></span> to access all the features of <span className={styles.highlight1}><b>VI TRY!</b></span>
+          Create an <span className={styles.highlight}><b>account</b></span> to access all the features of <span className={styles.highlight1}><b>Mediwise!</b></span>
         </p>
 
         {error && (
