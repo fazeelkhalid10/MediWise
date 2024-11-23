@@ -1,0 +1,234 @@
+.image {
+    position: fixed; /* Keep the image in place */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure it covers full width */
+    height: 100%; /* Ensure it covers full height */
+    object-fit: cover; /* Maintain aspect ratio */
+    z-index: -1; /* Send the image behind other elements */
+  }
+  
+  .error {
+  color: #4B003B; 
+  background: rgba(255, 255, 255, 0.2); 
+  border: 1px solid #FF5E6C; 
+  padding-top: 70px;
+  padding: 10px; 
+  border-radius: 15px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 10px 0; 
+}
+
+.erroricon {
+  margin-right: 8px; /* Adds some space between icon and text */
+  vertical-align: middle; /* Aligns icon with the middle of the text */
+}
+
+  .logoContainer {
+    margin-bottom: 30px;
+    background: #4B003B;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -90px; 
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  .logo {
+    width: 100%;  
+    height: 100%; 
+    border-radius: 20%; 
+    object-fit: cover;  
+  }
+  .overlay {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    max-width: 450px; /* Limit maximum width to 450px */
+    width: 90%; 
+    height: auto; 
+    background: rgba(255, 255, 255, 0.75); 
+    padding: 2rem; /* Responsive padding */
+    border-radius: 2rem; /* Responsive border radius */
+    text-align: center; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 1rem; /* Base font size */
+    font-weight: bold;
+  }
+  
+  .highlight {
+    color: #4B003B;
+  }
+  .highlight1 {
+    color: #4B003B;
+    padding-right: 125px;
+  }
+  
+  .Register {
+    padding-top: 20PX;
+    font-size: 2.25rem; /* Responsive font size */
+    font-weight: bold;
+    color:#FF5E6C;
+    align-self: flex-start; 
+    margin-left: 5%; 
+  }
+  
+  .text {
+    font-size: 1rem; /* Responsive font size */
+    font-weight: bold;
+    padding-right: 70px;
+    color: #000000;
+    align-self: flex-start; 
+
+  }
+  
+  .text1 {
+    padding-top: 30px; /* Responsive padding */
+    font-size: 1rem; /* Responsive font size */
+    font-weight: bold;
+    color: #000000;
+    align-self: flex-start; 
+    margin-left: 5%; 
+  }
+  .text2{
+    padding-top: 5px; /* Responsive padding */
+    font-size: 1rem; /* Responsive font size */
+    font-weight: bold;
+    color: #000000;
+    align-self: flex-start; 
+
+    
+    margin-left: 5%; 
+  }
+  
+  .inputContainer {
+    position: relative; 
+    margin-bottom: 1.25rem; /* Responsive margin */
+    color:#FF5E6C ;
+    width: 90%; 
+    max-width: 350px; 
+    height: 55px;
+  }
+  
+  .inputIcon {
+    position: absolute;
+    top: 50%;
+    left: 10px; 
+    transform: translateY(-50%); 
+    width: 1.25rem; /* Responsive width */
+    height: 1.25rem; /* Responsive height */
+    pointer-events: none; 
+    color: #000000;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.625rem 0.625rem 0.625rem 2.5rem; /* Responsive padding */
+    border: 2px solid #FF5E6C; 
+    border-radius: 1rem; /* Responsive border radius */
+    font-size: 1rem; /* Responsive font size */
+    background: transparent;
+    color: black;
+  }
+  
+  .input:focus {
+    outline: none;
+    border: 2px solid #FF5E6C; 
+  }
+  
+  .RegisterButton {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: #FF5E6C; 
+    color: white; 
+    padding: 0.625rem 1.25rem; /* Responsive padding */
+    border: none; 
+    border-radius: 1rem; /* Responsive border radius */
+    cursor: pointer; 
+    margin: 0.625rem 0; /* Responsive margin */
+    width: 90%; 
+    max-width: 350px; 
+    height: 55px;
+    font-weight: bold; 
+  }
+  
+  .icon {
+    margin-right: 0.625rem; /* Responsive margin */
+  }
+  
+  .RegisterButton {
+    background-color: #FF5E6C; 
+    
+    color: white;
+  }
+  
+  .reg {
+    color: #4B003B;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    
+  }
+  
+  .register {
+    padding-top: 0.625rem; /* Responsive padding */
+    padding-bottom: 1.25rem; /* Responsive padding */
+    color: #000000;
+    font-size: 1rem; /* Responsive font size */
+  }
+  
+
+
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .login {
+      font-size: 2rem; /* Adjust font size */
+    }
+  
+    .text, .text1 {
+      font-size: 0.875rem; /* Adjust font size */
+    }
+  
+    .inputContainer {
+      max-width: 80%; /* Allow wider input for smaller screens */
+    }
+  
+    .loginButton,
+    .googleButton {
+      max-width: 80%; /* Allow buttons to expand */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .Register {
+      font-size: 1.5rem; /* Adjust font size */
+    }
+  
+    .text, .text1 {
+      font-size: 0.75rem; /* Adjust font size */
+    }
+  
+    .inputContainer {
+      max-width: 90%; /* Allow even wider input for small screens */
+    }
+  
+    .RegisterButton {
+      max-width: 90%; /* Allow buttons to expand */
+    }
+  }
+  
