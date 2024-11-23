@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from "@/styles/Landing.module.css";
-
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
 export default function LandingPage(){
   const carouselItems = [
@@ -11,6 +12,8 @@ export default function LandingPage(){
   ];
 
   return (
+<>
+<Header/>
     <div className={styles.landingPage}>
       <section className={styles.carousel}>
         {carouselItems.map((item) => (
@@ -49,6 +52,8 @@ export default function LandingPage(){
         <Image src="/first.jpg" alt="Our team" width={600} height={300} layout="responsive" />
       </section>
     </div>
+    <Footer/>
+    </>
   );
 };
 

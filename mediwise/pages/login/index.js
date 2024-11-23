@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react'; // Import signIn from next-auth
 import MagneticButton from '../components/MagneticButton';
+import LandingPage from "../components/Landing";
 
 export default function Login() {
 
@@ -14,7 +15,7 @@ export default function Login() {
   const { data: session } = useSession(); 
 
   if (session) {
-    router.push('/login');
+    <LandingPage/>
   }
 
 
@@ -45,18 +46,15 @@ export default function Login() {
       });
       console.log("response");
       if (res.ok) {
-        router.push('/products');
+        <LandingPage/>
         console.log("ok");
       }
-      if (res.status===200) {
-        router.push('/products');
-        console.log("ok");
-      }
+
 
       if (res.error) {
         seterror(res.error);
       } else {
-        window.location.href = '/products'; 
+        <LandingPage/>
       }
     } catch (error) {
       seterror("An error occurred during login. Please try again.");

@@ -6,10 +6,8 @@ import styles from "@/styles/Home.module.css";
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import Login from './login';
-
-
 import LandingPage from "./components/Landing";
-import { Footer } from "./components/Footer";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,7 +38,7 @@ export default function Home() {
     return <div>Loading...</div>; //We can Show a loading screen 
   }
    
-  return page === "product" ? <LandingPage/> :<Login/>
+  return page === "Product" ? <LandingPage/> :<Login/>
 
 
   
