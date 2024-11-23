@@ -18,7 +18,7 @@ export default function Card() {
         <p className={styles.description}>hello</p>
         <p className={styles.price}>12000</p>
         <Link href="/products/3" className={styles.button}>
-          View Details
+          View Details of
         </Link>
       </div>
     </div>
