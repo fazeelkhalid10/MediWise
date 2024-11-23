@@ -7,6 +7,7 @@ import cart from "@/styles/cart.module.css";
 
 import styles from "@/styles/header.module.css";
 import Cart from './Cart';
+import { signOut } from "next-auth/react";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -92,6 +93,13 @@ export function Header() {
                 <User size={24} />
               </button>
             </div>
+            <button 
+  className={styles.headerIcon} 
+  onClick={() => signOut()} 
+  aria-label="Log out"
+>
+  Logout
+</button>
             <button 
               className={styles.mobileMenuButton}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
