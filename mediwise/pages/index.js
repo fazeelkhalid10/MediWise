@@ -5,13 +5,11 @@ import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-import register from './Register';
+import Login from './login';
 
 
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import Card from "./components/Card";
 import LandingPage from "./components/Landing";
+import { Footer } from "./components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -50,8 +48,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-<LandingPage/>
-    </div> :<register/>
+  
+<Products/>
+
+    </div> :<login/>
 
   
 }
