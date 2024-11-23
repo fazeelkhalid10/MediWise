@@ -3,10 +3,13 @@ import styles from "@/styles/Card.module.css";
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 export default function Card() {
+
+  const router=useRouter();
   return (
     <div>
-      <div className={styles.card}>
+      <div onClick={()=>{router.push("/products/3")}} className={styles.card}>
       <div className={styles.imageContainer}>
         <Image src="" alt={name} width={200} height={200} layout="responsive" />
       </div>
