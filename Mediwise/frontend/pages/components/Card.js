@@ -14,7 +14,7 @@ export default function Card() {
         <h3 className={styles.title}>heloo</h3>
         <p className={styles.description}>hello</p>
         <p className={styles.price}>12000</p>
-        <Link href="" className={styles.button}>
+        <Link href="/products/3" className={styles.button}>
           View Details
         </Link>
       </div>
