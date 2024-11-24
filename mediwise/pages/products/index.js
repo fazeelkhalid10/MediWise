@@ -4,8 +4,33 @@ import useProducts from '../hooks/useProducts';
 import styles from "@/styles/Products.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react'; 
+import { getSession } from 'next-auth/react';
 
-export default function Products() {
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (!session || session.user.role !== 'admin') {
+    return {
+      redirect: {
+        destination: '/login', 
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session }, 
+  };
+}
+
+
+
+
+
+
+export default  function  Products() {
   const {
     products,
     categories,
@@ -14,6 +39,15 @@ export default function Products() {
     priceRange,
     setPriceRange,
   } = useProducts();
+
+
+// || session.user.role !== 'admin'
+const router = useRouter();
+const { data: session } = useSession(); 
+
+// if (!session) {
+//   router.push('/');
+// }
 
   return (
     <>

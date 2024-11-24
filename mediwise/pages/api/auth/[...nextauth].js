@@ -13,12 +13,13 @@ export const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        await connectMongoDB(); 
+        await connectMongoDB();
 
         const user = await User.findOne({ email: credentials.email });
 
         if (user && (await bcrypt.compare(credentials.password, user.password))) {
-          return { id: user._id, email: user.email }; 
+          return { id: user._id, email: user.email, role: user.role }; 
+          console.log(user.role);
         } else {
           throw new Error('Invalid email or password');
         }
@@ -35,18 +36,21 @@ export const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id; 
+        token.id = user.id;
+        token.role = user.role; 
+        console.log(user.role);
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id; 
+      session.user.id = token.id;
+      session.user.role = token.role; 
+      console.log(token.role);
       return session;
     }
   },
-
-
 });
+
 
 
 export default handler;

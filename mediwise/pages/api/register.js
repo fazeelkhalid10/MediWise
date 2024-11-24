@@ -11,7 +11,7 @@ export default async function handler(req, res) {
                 return res.status(400).json({ error: 'Content-Type must be application/json' });
             }
 
-            const { name, email, password } = req.body;
+            const { name, email, password,role } = req.body;
 
             console.log('Received data:', { name, email, password });
 
@@ -26,13 +26,14 @@ export default async function handler(req, res) {
             if (existingUser) {
                 return res.status(400).json({ error: 'Email is already registered!' });
             }
-
+console.log("Role:",role);
             const hashedPassword = await bcrypt.hash(password, 10);
             await User.create({
                 name,
                 email,
                 password: hashedPassword,
-                isVerified: true 
+                isVerified: true ,
+                role: role || 'user',
             });
 
             return res.status(200).json({ message: 'Email verified and user registered successfully!' });

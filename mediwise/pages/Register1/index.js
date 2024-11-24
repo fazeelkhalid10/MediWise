@@ -54,7 +54,7 @@ export default function Register() {
 
     try {
 
-const role='user';
+const role='admin';
 console.log(role);
       const res = await fetch('/api/register', {
         method: "POST",
@@ -110,7 +110,7 @@ console.log(role);
           />
         </div>
 
-        <p className={styles.Register}>Register</p>
+        <p className={styles.Register}>Admin Register</p>
         <p className={styles.text}>
           Create an <span className={styles.highlight}><b>account</b></span> to access all the features of <span className={styles.highlight1}><b>Mediwise!</b></span>
         </p>
@@ -170,13 +170,7 @@ console.log(role);
           <Link href="/login">
             <span className={styles.reg}>Login</span>
           </Link>
-        </p>
-        <p className={styles.register}>
-          Sign up as Admin? 
-          <Link href="/Register1">
-            <span className={styles.reg}>Register</span>
-          </Link>
-          
+
         </p>
       </div>
     </div>
