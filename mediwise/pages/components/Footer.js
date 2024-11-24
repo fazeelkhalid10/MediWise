@@ -1,64 +1,65 @@
 import Link from 'next/link'
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react'
+import styles from '@/styles/footer.module.css'
 
 export function Footer() {
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6 col-lg-3 mb-4">
-            <h3>About MediWise</h3>
-            <p className="mb-4">Your trusted pharmacy for all your healthcare needs. We're committed to providing quality products and exceptional service.</p>
-            <div className="d-flex">
-              <a href="#" className="footer-icon me-3">
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.row}>
+          <div className={styles.column}>
+            <h3 className={styles.title}>About MediWise</h3>
+            <p className={styles.description}>Your trusted pharmacy for all your healthcare needs. We're committed to providing quality products and exceptional service.</p>
+            <div className={styles.socialIcons}>
+              <a href="#" className={styles.icon}>
                 <Facebook size={24} />
               </a>
-              <a href="#" className="footer-icon me-3">
+              <a href="#" className={styles.icon}>
                 <Twitter size={24} />
               </a>
-              <a href="#" className="footer-icon">
+              <a href="#" className={styles.icon}>
                 <Instagram size={24} />
               </a>
             </div>
           </div>
-          <div className="col-md-6 col-lg-3 mb-4">
-            <h3>Quick Links</h3>
-            <ul className="list-unstyled">
-              <li><Link href="/about" className="footer-link">About Us</Link></li>
-              <li><Link href="/products" className="footer-link">Our Products</Link></li>
-              <li><Link href="/services" className="footer-link">Services</Link></li>
-              <li><Link href="/blog" className="footer-link">Blog</Link></li>
-              <li><Link href="/contact" className="footer-link">Contact Us</Link></li>
+          <div className={styles.column}>
+            <h3 className={styles.title}>Quick Links</h3>
+            <ul className={styles.linkList}>
+              <li><Link href="/about" className={styles.link}>About Us</Link></li>
+              <li><Link href="/products" className={styles.link}>Our Products</Link></li>
+              <li><Link href="/services" className={styles.link}>Services</Link></li>
+              <li><Link href="/blog" className={styles.link}>Blog</Link></li>
+              <li><Link href="/contact" className={styles.link}>Contact Us</Link></li>
             </ul>
           </div>
-          <div className="col-md-6 col-lg-3 mb-4">
-            <h3>Customer Service</h3>
-            <ul className="list-unstyled">
-              <li><Link href="/faq" className="footer-link">FAQ</Link></li>
-              <li><Link href="/shipping" className="footer-link">Shipping & Returns</Link></li>
-              <li><Link href="/privacy" className="footer-link">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="footer-link">Terms & Conditions</Link></li>
+          <div className={styles.column}>
+            <h3 className={styles.title}>Customer Service</h3>
+            <ul className={styles.linkList}>
+              <li><Link href="/faq" className={styles.link}>FAQ</Link></li>
+              <li><Link href="/shipping" className={styles.link}>Shipping & Returns</Link></li>
+              <li><Link href="/privacy" className={styles.link}>Privacy Policy</Link></li>
+              <li><Link href="/terms" className={styles.link}>Terms & Conditions</Link></li>
             </ul>
           </div>
-          <div className="col-md-6 col-lg-3 mb-4">
-            <h3>Contact Us</h3>
-            <ul className="list-unstyled">
-              <li className="d-flex align-items-center mb-2">
-                <MapPin size={18} className="me-2 text-warning" />
+          <div className={styles.column}>
+            <h3 className={styles.title}>Contact Us</h3>
+            <ul className={styles.linkList}>
+              <li className={styles.contactItem}>
+                <MapPin size={18} className={styles.contactIcon} />
                 123 Pharmacy Street, City, State 12345
               </li>
-              <li className="d-flex align-items-center mb-2">
-                <Phone size={18} className="me-2 text-warning" />
+              <li className={styles.contactItem}>
+                <Phone size={18} className={styles.contactIcon} />
                 (123) 456-7890
               </li>
-              <li className="d-flex align-items-center">
-                <Mail size={18} className="me-2 text-warning" />
+              <li className={styles.contactItem}>
+                <Mail size={18} className={styles.contactIcon} />
                 info@mediwise.com
               </li>
             </ul>
           </div>
         </div>
-        <div className="footer-border text-center">
+        <div className={styles.copyright}>
           <p>&copy; {new Date().getFullYear()} MediWise Pharmacy. All rights reserved.</p>
         </div>
       </div>

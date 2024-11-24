@@ -1,127 +1,160 @@
 .landingPage {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.banner {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  margin-top: 3cm;
+}
+
+.bannerItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.bannerItem.active {
+  opacity: 1;
+}
+
+.saleItems,
+.topSelling,
+.bundles,
+.allItems,
+.features,
+.about {
+  margin-bottom: 3rem;
+}
+
+.saleItems h2,
+.topSelling h2,
+.bundles h2,
+.allItems h2,
+.features h2,
+.about h2 {
+  font-size: 2rem;
+  color: #009688;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.itemGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+}
+
+.item h3 {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  color: #333;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #009688;
+  margin-bottom: 1rem;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 0.5rem;
+}
+
+.button {
+  display: inline-block;
+  background-color: #009688;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #00796b;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.feature {
+  flex-basis: calc(33.333% - 1rem);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.feature h2 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.feature p {
+  color: #666;
+}
+
+.about {
+  text-align: center;
+}
+
+.about p {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .itemGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
-  
-  .carousel {
-    position: relative;
-    height: 400px;
-    overflow: hidden;
-    margin-bottom: 40px;
-  }
-  
-  .carouselItem {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-  }
-  
-  .carouselItem:first-child {
-    opacity: 1;
-  }
-  
-  @keyframes carouselAnimation {
-    0% {
-      opacity: 0;
-    }
-    20% {
-      opacity: 1;
-    }
-    33.33% {
-      opacity: 1;
-    }
-    53.33% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  
-  .carouselItem:nth-child(1) {
-    animation: carouselAnimation 15s infinite;
-  }
-  
-  .carouselItem:nth-child(2) {
-    animation: carouselAnimation 15s infinite 5s;
-  }
-  
-  .carouselItem:nth-child(3) {
-    animation: carouselAnimation 15s infinite 10s;
-  }
-  
-  .welcome {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .welcome h1 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .welcome p {
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
-  .features {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-  }
-  
+
   .feature {
-    flex-basis: 30%;
-    text-align: center;
+    flex-basis: 100%;
   }
-  
-  .feature img {
-    border-radius: 50%;
-    margin-bottom: 20px;
-  }
-  
-  .feature h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .feature p {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .about {
-    margin-bottom: 40px;
-  }
-  
+}
+
+@media (max-width: 480px) {
+  .saleItems h2,
+  .topSelling h2,
+  .bundles h2,
+  .allItems h2,
+  .features h2,
   .about h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
   }
-  
-  .about p {
+
+  .item h3 {
     font-size: 1rem;
-    color: #666;
-    margin-bottom: 20px;
   }
-  
-  @media (max-width: 768px) {
-    .features {
-      flex-direction: column;
-    }
-  
-    .feature {
-      margin-bottom: 30px;
-    }
+
+  .price {
+    font-size: 1rem;
   }
-  
-  
+}
+
