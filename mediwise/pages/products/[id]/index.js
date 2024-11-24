@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Star, ShoppingCart, Heart } from 'lucide-react';
 import styles from "@/styles/productdetails.module.css";
+import { Header } from '@/pages/components/Header';
+import { Footer } from '@/pages/components/Footer';
 
 // Mock product data (replace with actual data fetching in a real application)
 const product = {
@@ -19,8 +21,42 @@ const product = {
     { id: '2', user: 'Jane Smith', rating: 4, comment: 'Good product, but a bit pricey.' },
   ],
 };
+// This will run server-side before rendering the page
+export async function getServerSideProps(context) {
+  const { params } = context;  // If you're using dynamic routing, this will get the route params
+const id=params.id;
+  try {
+    // Perform the fetch request to the API endpoint
+    const res = await fetch('http://localhost:3000/api/getpdetails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Ensure the content type is JSON
+      },
+      body: JSON.stringify({ id:id }), // Send the params or any necessary data
+    });
 
-const ProductDetails = () => {
+    // If the fetch was successful, parse the JSON data
+    const data = await res.json();
+console.log(data);
+    // Return the data as props for your page component
+    return {
+      props: {
+        productDetails: data.data, // Pass the fetched data as props
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching product details:', error);
+
+    // In case of an error, you can return an empty object or handle it as needed
+    return {
+      props: {
+        productDetails: null,
+      },
+    };
+  }
+}
+
+const ProductDetails = ({productDetails}) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -47,22 +83,24 @@ const ProductDetails = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className={styles.productDetails}>
       <div className={styles.productImage}>
         <Image src={product.image} alt={product.name} width={400} height={400} layout="responsive" />
       </div>
       <div className={styles.productInfo}>
-        <h1 className={styles.productName}>{product.name}</h1>
-        <p className={styles.productCategory}>{product.category}</p>
+        <h1 className={styles.productName}>{productDetails.name}</h1>
+        <p className={styles.productCategory}>{productDetails.company}</p>
         <div className={styles.productRating}>
           {[...Array(5)].map((_, i) => (
             <Star key={i} className={i < Math.floor(product.rating) ? styles.starFilled : styles.starEmpty} />
           ))}
           <span>{product.rating.toFixed(1)}</span>
         </div>
-        <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
-        <p className={styles.productDescription}>{product.description}</p>
-        <p className={styles.productStock}>In stock: {product.stock}</p>
+        <p className={styles.productPrice}>${productDetails.price}</p>
+        <p className={styles.productDescription}>{productDetails.description}</p>
+        <p className={styles.productStock}>In stock: {productDetails.quantity}</p>
         <div className={styles.productActions}>
           <button className={styles.addToCartButton}>
             <ShoppingCart size={20} />
@@ -116,6 +154,8 @@ const ProductDetails = () => {
         </form>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

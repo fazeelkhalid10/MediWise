@@ -52,7 +52,7 @@ export function Header() {
             <Link href="/" className={styles.headerNavLink}>Home</Link>
             <Link href="/products" className={styles.headerNavLink}>Products</Link>
             <Link href="/services" className={styles.headerNavLink}>Services</Link>
-            <Link href="/contact" className={styles.headerNavLink}>Contact</Link>
+            <Link href="/addproduct" className={styles.headerNavLink}>Add product</Link>
           </nav>
           <div className={styles.headerActions}>
             <div className={`${styles.searchContainer} ${isSearchExpanded ? styles.expanded : ''}`}>
@@ -96,7 +96,7 @@ export function Header() {
             <Link href="/" className={styles.mobileNavLink}>Home</Link>
             <Link href="/products" className={styles.mobileNavLink}>Products</Link>
             <Link href="/services" className={styles.mobileNavLink}>Services</Link>
-            <Link href="/contact" className={styles.mobileNavLink}>Contact</Link>
+            <Link href="/addproduct" className={styles.mobileNavLink}>Add product</Link>
           </div>
         )}
       </div>

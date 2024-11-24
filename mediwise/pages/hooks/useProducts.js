@@ -20,10 +20,10 @@ const useProducts = () => {
           'Content-Type': 'application/json' 
         } // Specify the HTTP method
       }).then((res)=>res.json()).then((data)=>{
-
-        setProducts(data);
-        setFilteredProducts(data);
-        const uniqueCategories = Array.from(new Set(data.map(p => p.name)));
+console.log(data.products[0]._id);
+        setProducts(data.products);
+        setFilteredProducts(data.products);
+        const uniqueCategories = Array.from(new Set(data.products.map(p => p.name)));
         setCategories(uniqueCategories);
       });
       
