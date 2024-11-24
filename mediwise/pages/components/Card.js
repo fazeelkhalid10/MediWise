@@ -4,7 +4,7 @@ import styles from "@/styles/Card.module.css";
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-export default function Card() {
+export default function Card({name,price,description}) {
 
   const router=useRouter();
   return (
@@ -14,9 +14,9 @@ export default function Card() {
         <Image src="" alt={name} width={200} height={200} layout="responsive" />
       </div>
       <div className={styles.content}>
-        <h3 className={styles.title}>heloo</h3>
-        <p className={styles.description}>hello</p>
-        <p className={styles.price}>12000</p>
+        <h3 className={styles.title}>{name}</h3>
+        <p className={styles.description}>{description}</p>
+        <p className={styles.price}>{price}</p>
         <Link href="/products/3" className={styles.button}>
           View Details of Product
         </Link>

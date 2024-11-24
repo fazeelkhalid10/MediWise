@@ -11,7 +11,7 @@ import { getSession } from 'next-auth/react';
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  if (!session || session.user.role !== 'admin') {
+  if (!session) {
     return {
       redirect: {
         destination: '/login', 
@@ -91,7 +91,7 @@ const { data: session } = useSession();
       </aside>
       <main className={styles.productGrid}>
         {products.map((product) => (
-          <Card/>
+          <Card name={product.name} price={product.price} description={product.description} />
         ))}
       </main>
      
