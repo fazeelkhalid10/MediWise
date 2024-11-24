@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from "@/styles/Landing.module.css";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
 export default function LandingPage(){
   const carouselItems = [

@@ -14,13 +14,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  resetToken: {
+  role: {
     type: String,
-    required:false,
-  },
-  resetTokenExpires: {
-    type: String,
-    required: false,
+    required: true,
   },
   isVerified: {
      type: Boolean,

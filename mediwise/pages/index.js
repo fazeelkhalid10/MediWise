@@ -6,7 +6,7 @@ import styles from "@/styles/Home.module.css";
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import Login from './login';
-import LandingPage from "./components/Landing";
+import LandingPage from "./Landing";
 
 
 const geistSans = localFont({

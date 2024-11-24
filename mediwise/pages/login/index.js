@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react'; // Import signIn from next-auth
 import MagneticButton from '../components/MagneticButton';
-import LandingPage from "../components/Landing";
+import LandingPage from "../Landing";
 
 export default function Login() {
 
@@ -15,7 +15,7 @@ export default function Login() {
   const { data: session } = useSession(); 
 
   if (session) {
-    <LandingPage/>
+    router.push('/');
   }
 
 
@@ -47,7 +47,7 @@ export default function Login() {
       console.log("response");
       if (res.ok) {
         <LandingPage/>
-        console.log("ok");
+        console.log(" re ok");
       }
 
 
