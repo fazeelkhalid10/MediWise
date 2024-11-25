@@ -26,6 +26,34 @@
   opacity: 1;
 }
 
+.bannerButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.bannerButton:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bannerButtonLeft {
+  left: 10px;
+}
+
+.bannerButtonRight {
+  right: 10px;
+}
+
 .saleItems,
 .topSelling,
 .bundles,
@@ -35,16 +63,33 @@
   margin-bottom: 3rem;
 }
 
-.saleItems h2,
-.topSelling h2,
-.bundles h2,
-.allItems h2,
-.features h2,
-.about h2 {
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   font-size: 2rem;
   color: #009688;
   margin-bottom: 1.5rem;
-  text-align: center;
+  text-align: left;
+  transition: text-decoration 0.3s ease;
+}
+
+.sectionIcon {
+  margin-left: 0.5rem;
+  color: #009688;
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+}
+
+.saleItems:hover .sectionTitle,
+.topSelling:hover .sectionTitle,
+.bundles:hover .sectionTitle,
+.allItems:hover .sectionTitle,
+.features:hover .sectionTitle,
+.about:hover .sectionTitle {
+  text-decoration: underline;
+  text-decoration-color: #009688;
 }
 
 .itemGrid {
@@ -91,7 +136,8 @@
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  text-decoration: none;
+  text-decoration:
+none;
   transition: background-color 0.3s ease;
 }
 
@@ -99,10 +145,33 @@
   background-color: #00796b;
 }
 
-.features {
+.seeMoreContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.seeMoreButton {
+  display: inline-block;
+  background-color: transparent;
+  color: #009688;
+  padding: 0.5rem 1rem;
+  border: 2px solid #009688;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.seeMoreButton:hover {
+  background-color: #009688;
+  color: #fff;
+}
+
+.featureGrid {
+  display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .feature {
@@ -111,9 +180,10 @@
   margin-bottom: 2rem;
 }
 
-.feature h2 {
+.feature h3 {
   font-size: 1.5rem;
   margin: 1rem 0;
+  color: #333;
 }
 
 .feature p {
@@ -128,6 +198,28 @@
   margin-bottom: 2rem;
   color: #666;
 }
+.floatingIcons {
+  position: fixed;
+  width: 100%;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.messageIcon {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+}
+
+.scrollTopButton {
+  position: absolute;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
 @media (max-width: 768px) {
   .itemGrid {
@@ -140,12 +232,7 @@
 }
 
 @media (max-width: 480px) {
-  .saleItems h2,
-  .topSelling h2,
-  .bundles h2,
-  .allItems h2,
-  .features h2,
-  .about h2 {
+  .sectionTitle {
     font-size: 1.5rem;
   }
 

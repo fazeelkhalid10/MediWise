@@ -50,9 +50,9 @@ export function Header() {
           </Link>
           <nav className={styles.desktopNav}>
             <Link href="/" className={styles.headerNavLink}>Home</Link>
-            <Link href="/products" className={styles.headerNavLink}>Products</Link>
-            <Link href="/services" className={styles.headerNavLink}>Services</Link>
-            <Link href="/addproduct" className={styles.headerNavLink}>Add product</Link>
+            <Link href="/products" className={styles.headerNavLink}>All Products</Link>
+            <Link href="/addproduct" className={styles.headerNavLink}>Add Product</Link>
+            <Link href="/services" className={styles.headerNavLink}>About Us</Link>
           </nav>
           <div className={styles.headerActions}>
             <div className={`${styles.searchContainer} ${isSearchExpanded ? styles.expanded : ''}`}>
