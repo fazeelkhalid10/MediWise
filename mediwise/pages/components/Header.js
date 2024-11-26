@@ -50,7 +50,7 @@ export function Header() {
           </Link>
           <nav className={styles.desktopNav}>
             <Link href="/" className={styles.headerNavLink}>Home</Link>
-            <Link href="/products" className={styles.headerNavLink}>All Products</Link>
+            <Link href="/AllProduct" className={styles.headerNavLink}>All Products</Link>
             <Link href="/addproduct" className={styles.headerNavLink}>Add Product</Link>
             <Link href="/services" className={styles.headerNavLink}>About Us</Link>
           </nav>
