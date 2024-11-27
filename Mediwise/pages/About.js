@@ -35,13 +35,17 @@ export default function AboutUs() {
         </section>
 
         <section className={styles.locationSection}>
-          <h2>Our Location</h2>
-          <div className={styles.mapContainer}>
-            <div className={styles.mapPlaceholder}>
-              Google Maps will be displayed here
-            </div>
-          </div>
-        </section>
+  <h2>Our Location</h2>
+  <div className={styles.mapContainer}>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3402.5513466616344!2d74.30043917486847!3d31.481525749061543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391903f08ebc7e8b%3A0x47e934f4cd34790!2sFAST%20NUCES%20Lahore!5e0!3m2!1sen!2s!4v1714144292400!5m2!1sen!2s"
+      className={styles.googleMap}
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      title="FAST NUCES Lahore Location"
+    ></iframe>
+  </div>
+</section>
 
         <section className={styles.formsSection}>
           <div className={styles.complaintForm}>
