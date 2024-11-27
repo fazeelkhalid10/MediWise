@@ -1,0 +1,198 @@
+.aboutPage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .aboutSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+    margin-bottom: 3rem;
+  }
+  
+  .aboutContent {
+    text-align: center;
+    max-width: 800px;
+  }
+  
+  .aboutContent h1 {
+    font-size: 2.5rem;
+    color: #009688;
+    margin-bottom: 1.5rem;
+  }
+  
+  .aboutContent p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  .locationSection,
+  .formsSection,
+  .foundersSection {
+    margin-bottom: 3rem;
+  }
+  
+  .locationSection h2,
+  .formsSection h2,
+  .foundersSection h2 {
+    color: #009688;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    
+  }
+  
+  .mapContainer {
+    width: 100%;
+    height: 400px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+  }
+  
+  .mapPlaceholder {
+    color: #666;
+  }
+  
+  .formsSection {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .complaintForm,
+  .questionForm {
+    flex: 1;
+  }
+  
+  .complaintForm form,
+  .questionForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .complaintForm input,
+  .complaintForm textarea,
+  .questionForm textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .complaintForm button,
+  .questionForm button {
+    background-color: #009688;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+  }
+  
+  .complaintForm button:hover,
+  .questionForm button:hover {
+    background-color: #00796b;
+  }
+  
+  .alert {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .foundersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+  
+  .founder {
+    text-align: center;
+  }
+  
+  .founderImagePlaceholder {
+    width: 150px;
+    height: 150px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+  }
+  .foundersSection {
+    margin-bottom: 3rem;
+  }
+  
+  .foundersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .founder {
+    text-align: center;
+  }
+  
+  .founderImage {
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+  }
+  
+  .founder h3 {
+    color: #009688;
+    margin-bottom: 0.5rem;
+  }
+  
+  .founder p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .foundersGrid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+  .founder h3 {
+    color: #009688;
+    margin-bottom: 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .formsSection {
+      flex-direction: column;
+    }
+    
+    .aboutContent h1 {
+      font-size: 2rem;
+    }
+    
+    .locationSection h2,
+    .formsSection h2,
+    .foundersSection h2 {
+      font-size: 1.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .aboutContent h1 {
+      font-size: 1.75rem;
+    }
+    
+    .locationSection h2,
+    .formsSection h2,
+    .foundersSection h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  

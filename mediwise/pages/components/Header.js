@@ -49,10 +49,10 @@ export function Header() {
             <span>MediWise</span>
           </Link>
           <nav className={styles.desktopNav}>
-            <Link href="/" className={styles.headerNavLink}>Home</Link>
+            <Link href="/Landing" className={styles.headerNavLink}>Home</Link>
             <Link href="/AllProduct" className={styles.headerNavLink}>All Products</Link>
             <Link href="/addproduct" className={styles.headerNavLink}>Add Product</Link>
-            <Link href="/services" className={styles.headerNavLink}>About Us</Link>
+            <Link href="/About" className={styles.headerNavLink}>About Us</Link>
           </nav>
           <div className={styles.headerActions}>
             <div className={`${styles.searchContainer} ${isSearchExpanded ? styles.expanded : ''}`}>

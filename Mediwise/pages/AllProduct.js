@@ -5,7 +5,7 @@ import styles from "@/styles/AllProduct.module.css";
 import landingStyles from "@/styles/Landing.module.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Search, Grid, List } from 'lucide-react';
+import { Search, Grid, List, ArrowUpCircle, MessageCircle } from 'lucide-react';
 
 export default function AllProduct() {
   const [products, setProducts] = useState([]);
@@ -13,6 +13,7 @@ export default function AllProduct() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('');
   const [layoutType, setLayoutType] = useState('grid');
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     // In a real application, you would fetch this data from an API
@@ -29,6 +30,18 @@ export default function AllProduct() {
       { id: 10, name: 'Bandages', price: 3.99, image: '/bandages.jpg', onSale: false },
       { id: 11, name: 'Cough Syrup', price: 8.99, image: '/cough-syrup.jpg', onSale: false },
       { id: 12, name: 'Sunscreen SPF 50', price: 12.99, image: '/sunscreen.jpg', onSale: false },
+      { id: 13, name: 'Vitamin C Supplements', price: 9.99, salePrice: 7.99, image: '/vitamin-c.jpg', onSale: true },
+      { id: 14, name: 'Pain Relief Gel', price: 12.99, salePrice: 10.99, image: '/pain-relief.jpg', onSale: true },
+      { id: 15, name: 'Allergy Medicine', price: 15.99, salePrice: 13.99, image: '/allergy-med.jpg', onSale: true },
+      { id: 16, name: 'First Aid Kit', price: 24.99, salePrice: 19.99, image: '/first-aid.jpg', onSale: true },
+      { id: 17, name: 'Multivitamin Complex', price: 19.99, image: '/multivitamin.jpg', onSale: false },
+      { id: 18, name: 'Antibacterial Hand Sanitizer', price: 3.99, image: '/hand-sanitizer.jpg', onSale: false },
+      { id: 19, name: 'Digital Thermometer', price: 14.99, image: '/thermometer.jpg', onSale: false },
+      { id: 20, name: 'Omega-3 Fish Oil', price: 22.99, image: '/fish-oil.jpg', onSale: false },
+      { id: 21, name: 'Aspirin', price: 5.99, image: '/aspirin.jpg', onSale: false },
+      { id: 22, name: 'Bandages', price: 3.99, image: '/bandages.jpg', onSale: false },
+      { id: 23, name: 'Cough Syrup', price: 8.99, image: '/cough-syrup.jpg', onSale: false },
+      { id: 24, name: 'Sunscreen SPF 50', price: 12.99, image: '/sunscreen.jpg', onSale: false },
     ];
     setProducts(allProducts);
     setFilteredProducts(allProducts);
@@ -56,11 +69,27 @@ export default function AllProduct() {
     setFilteredProducts(result);
   }, [products, searchTerm, sortOption]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.pageYOffset > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
       <Header />
       <main className={styles.allProductPage}>
-        <h1 className={styles.pageTitle}>All Products</h1>
+        <h1 className={styles.pageTitle}>.</h1>
         
         <div className={styles.controlsContainer}>
           <div className={styles.searchContainer}>
@@ -116,6 +145,16 @@ export default function AllProduct() {
             </div>
           ))}
         </div>
+
+        {showScrollTop && (
+          <button onClick={scrollToTop} className={styles.scrollTopButton}>
+            <ArrowUpCircle size={24} />
+          </button>
+        )}
+
+        <Link href="/about" className={styles.aboutUsButton}>
+          <MessageCircle size={24} />
+        </Link>
       </main>
       <Footer />
     </>
