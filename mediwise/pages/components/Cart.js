@@ -3,7 +3,7 @@ import { X, Trash2 } from 'lucide-react';
 
 import styles from '@/styles/cart.module.css'
 
-export default function Cart({ isOpen, onClose, items, onRemoveItem, onUpdateQuantity }){
+export default function Cart({ isOpen, onClose, items = [], onRemoveItem, onUpdateQuantity }) {
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   if (!isOpen) return null;
@@ -52,7 +52,4 @@ export default function Cart({ isOpen, onClose, items, onRemoveItem, onUpdateQua
       </div>
     </div>
   );
-};
-
-
-
+}

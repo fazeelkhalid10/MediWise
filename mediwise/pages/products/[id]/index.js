@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Star, ShoppingCart, Heart } from 'lucide-react';
 import styles from "@/styles/productdetails.module.css";
 import { Header } from '@/pages/components/Header';
 import { Footer } from '@/pages/components/Footer';
+import { useSession } from 'next-auth/react';
+
 
 // Mock product data (replace with actual data fetching in a real application)
 const product = {
@@ -56,7 +58,7 @@ console.log(data);
   }
 }
 
-const ProductDetails = ({productDetails}) => {
+function ProductDetails ({productDetails}){
   const router = useRouter();
   const { id } = router.query;
 
@@ -66,6 +68,35 @@ const ProductDetails = ({productDetails}) => {
 
   // In a real application, you would fetch the product data based on the ID
   // For now, we'll use the mock data
+  const { data: session } = useSession();
+useEffect(()=>{
+
+fetch('/api/getreview',
+  {
+
+
+    method:"POST",
+    headers: {
+      'Content-Type': 'application/json' 
+    },
+    
+    body:JSON.stringify(
+      {
+    userid:session.user.id,
+    productid:productDetails._id,
+   
+    
+    
+    
+      })
+    
+    
+    
+            }).then((res)=>res.json()).then((data)=>            setReviews(data.review)
+          )
+
+
+},[])
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -76,11 +107,59 @@ const ProductDetails = ({productDetails}) => {
         rating: newRating,
         comment: newComment.trim(),
       };
+
+      fetch('/api/review',
+        {
+method:"POST",
+headers: {
+  'Content-Type': 'application/json' 
+},
+
+body:JSON.stringify(
+  {
+userid:session.user.id,
+productid:productDetails._id,
+reviews:newComment.trim(),
+stars:newRating
+
+
+
+  })
+
+
+
+        }).then((res)=>res.json()).then((data)=>console.log(data))
       setReviews([...reviews, newReview]);
       setNewComment('');
       setNewRating(5);
     }
   };
+function addtocart(productid,userid)
+{
+
+const data=
+{
+productid,userid
+
+
+}
+
+fetch('/api/addtocart',{
+method:"POST",
+
+headers: {
+  'Content-Type': 'application/json' 
+},
+body:JSON.stringify(data)
+
+
+
+
+}).then((res)=>res.json).then((data)=>console.log(data));
+
+
+}
+
 
   return (
     <>
@@ -102,7 +181,7 @@ const ProductDetails = ({productDetails}) => {
         <p className={styles.productDescription}>{productDetails.description}</p>
         <p className={styles.productStock}>In stock: {productDetails.quantity}</p>
         <div className={styles.productActions}>
-          <button className={styles.addToCartButton}>
+          <button className={styles.addToCartButton} onClick={()=>addtocart(productDetails._id,session.user.id)}>
             <ShoppingCart size={20} />
             Add to Cart
           </button>
@@ -116,14 +195,14 @@ const ProductDetails = ({productDetails}) => {
         {reviews.map((review) => (
           <div key={review.id} className={styles.review}>
             <div className={styles.reviewHeader}>
-              <span className={styles.reviewUser}>{review.user}</span>
+              <span className={styles.reviewUser}>{review.name}</span>
               <div className={styles.reviewRating}>
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className={i < review.rating ? styles.starFilled : styles.starEmpty} size={16} />
+                  <Star key={i} className={i < review.stars ? styles.starFilled : styles.starEmpty} size={16} />
                 ))}
               </div>
             </div>
-            <p className={styles.reviewComment}>{review.comment}</p>
+            <p className={styles.reviewComment}>{review.reviews}</p>
           </div>
         ))}
         <form onSubmit={handleCommentSubmit} className={styles.commentForm}>

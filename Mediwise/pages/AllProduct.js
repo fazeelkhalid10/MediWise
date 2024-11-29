@@ -6,69 +6,59 @@ import landingStyles from "@/styles/Landing.module.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Search, Grid, List, ArrowUpCircle, MessageCircle } from 'lucide-react';
+import useProducts from './hooks/useProducts';
 
 export default function AllProduct() {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortOption, setSortOption] = useState('');
+  
   const [layoutType, setLayoutType] = useState('grid');
+
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const {
+    filteredProducts,
+    searchTerm,
+    sortOption,
+    setSearchTerm,
+    setSortOption,
+    setSelectedCategory,
+    priceRange,
+    setPriceRange,
+    setFilteredProducts
 
-  useEffect(() => {
-    // In a real application, you would fetch this data from an API
-    const allProducts = [
-      { id: 1, name: 'Vitamin C Supplements', price: 9.99, salePrice: 7.99, image: '/vitamin-c.jpg', onSale: true },
-      { id: 2, name: 'Pain Relief Gel', price: 12.99, salePrice: 10.99, image: '/pain-relief.jpg', onSale: true },
-      { id: 3, name: 'Allergy Medicine', price: 15.99, salePrice: 13.99, image: '/allergy-med.jpg', onSale: true },
-      { id: 4, name: 'First Aid Kit', price: 24.99, salePrice: 19.99, image: '/first-aid.jpg', onSale: true },
-      { id: 5, name: 'Multivitamin Complex', price: 19.99, image: '/multivitamin.jpg', onSale: false },
-      { id: 6, name: 'Antibacterial Hand Sanitizer', price: 3.99, image: '/hand-sanitizer.jpg', onSale: false },
-      { id: 7, name: 'Digital Thermometer', price: 14.99, image: '/thermometer.jpg', onSale: false },
-      { id: 8, name: 'Omega-3 Fish Oil', price: 22.99, image: '/fish-oil.jpg', onSale: false },
-      { id: 9, name: 'Aspirin', price: 5.99, image: '/aspirin.jpg', onSale: false },
-      { id: 10, name: 'Bandages', price: 3.99, image: '/bandages.jpg', onSale: false },
-      { id: 11, name: 'Cough Syrup', price: 8.99, image: '/cough-syrup.jpg', onSale: false },
-      { id: 12, name: 'Sunscreen SPF 50', price: 12.99, image: '/sunscreen.jpg', onSale: false },
-      { id: 13, name: 'Vitamin C Supplements', price: 9.99, salePrice: 7.99, image: '/vitamin-c.jpg', onSale: true },
-      { id: 14, name: 'Pain Relief Gel', price: 12.99, salePrice: 10.99, image: '/pain-relief.jpg', onSale: true },
-      { id: 15, name: 'Allergy Medicine', price: 15.99, salePrice: 13.99, image: '/allergy-med.jpg', onSale: true },
-      { id: 16, name: 'First Aid Kit', price: 24.99, salePrice: 19.99, image: '/first-aid.jpg', onSale: true },
-      { id: 17, name: 'Multivitamin Complex', price: 19.99, image: '/multivitamin.jpg', onSale: false },
-      { id: 18, name: 'Antibacterial Hand Sanitizer', price: 3.99, image: '/hand-sanitizer.jpg', onSale: false },
-      { id: 19, name: 'Digital Thermometer', price: 14.99, image: '/thermometer.jpg', onSale: false },
-      { id: 20, name: 'Omega-3 Fish Oil', price: 22.99, image: '/fish-oil.jpg', onSale: false },
-      { id: 21, name: 'Aspirin', price: 5.99, image: '/aspirin.jpg', onSale: false },
-      { id: 22, name: 'Bandages', price: 3.99, image: '/bandages.jpg', onSale: false },
-      { id: 23, name: 'Cough Syrup', price: 8.99, image: '/cough-syrup.jpg', onSale: false },
-      { id: 24, name: 'Sunscreen SPF 50', price: 12.99, image: '/sunscreen.jpg', onSale: false },
-    ];
-    setProducts(allProducts);
-    setFilteredProducts(allProducts);
-  }, []);
 
-  useEffect(() => {
-    let result = products;
+  } = useProducts();
+  // useEffect(() => {
+  //   // In a real application, you would fetch this data from an API
+  //   const allProducts = [
+  //     { id: 1, name: 'Vitamin C Supplements', price: 9.99, salePrice: 7.99, image: '/vitamin-c.jpg', onSale: true },
+  //     { id: 2, name: 'Pain Relief Gel', price: 12.99, salePrice: 10.99, image: '/pain-relief.jpg', onSale: true },
+  //     { id: 3, name: 'Allergy Medicine', price: 15.99, salePrice: 13.99, image: '/allergy-med.jpg', onSale: true },
+  //     { id: 4, name: 'First Aid Kit', price: 24.99, salePrice: 19.99, image: '/first-aid.jpg', onSale: true },
+  //     { id: 5, name: 'Multivitamin Complex', price: 19.99, image: '/multivitamin.jpg', onSale: false },
+  //     { id: 6, name: 'Antibacterial Hand Sanitizer', price: 3.99, image: '/hand-sanitizer.jpg', onSale: false },
+  //     { id: 7, name: 'Digital Thermometer', price: 14.99, image: '/thermometer.jpg', onSale: false },
+  //     { id: 8, name: 'Omega-3 Fish Oil', price: 22.99, image: '/fish-oil.jpg', onSale: false },
+  //     { id: 9, name: 'Aspirin', price: 5.99, image: '/aspirin.jpg', onSale: false },
+  //     { id: 10, name: 'Bandages', price: 3.99, image: '/bandages.jpg', onSale: false },
+  //     { id: 11, name: 'Cough Syrup', price: 8.99, image: '/cough-syrup.jpg', onSale: false },
+  //     { id: 12, name: 'Sunscreen SPF 50', price: 12.99, image: '/sunscreen.jpg', onSale: false },
+  //     { id: 13, name: 'Vitamin C Supplements', price: 9.99, salePrice: 7.99, image: '/vitamin-c.jpg', onSale: true },
+  //     { id: 14, name: 'Pain Relief Gel', price: 12.99, salePrice: 10.99, image: '/pain-relief.jpg', onSale: true },
+  //     { id: 15, name: 'Allergy Medicine', price: 15.99, salePrice: 13.99, image: '/allergy-med.jpg', onSale: true },
+  //     { id: 16, name: 'First Aid Kit', price: 24.99, salePrice: 19.99, image: '/first-aid.jpg', onSale: true },
+  //     { id: 17, name: 'Multivitamin Complex', price: 19.99, image: '/multivitamin.jpg', onSale: false },
+  //     { id: 18, name: 'Antibacterial Hand Sanitizer', price: 3.99, image: '/hand-sanitizer.jpg', onSale: false },
+  //     { id: 19, name: 'Digital Thermometer', price: 14.99, image: '/thermometer.jpg', onSale: false },
+  //     { id: 20, name: 'Omega-3 Fish Oil', price: 22.99, image: '/fish-oil.jpg', onSale: false },
+  //     { id: 21, name: 'Aspirin', price: 5.99, image: '/aspirin.jpg', onSale: false },
+  //     { id: 22, name: 'Bandages', price: 3.99, image: '/bandages.jpg', onSale: false },
+  //     { id: 23, name: 'Cough Syrup', price: 8.99, image: '/cough-syrup.jpg', onSale: false },
+  //     { id: 24, name: 'Sunscreen SPF 50', price: 12.99, image: '/sunscreen.jpg', onSale: false },
+  //   ];
+  //   setProducts(allProducts);
+  //   setFilteredProducts(allProducts);
+  // }, []);
 
-    // Apply search filter
-    if (searchTerm) {
-      result = result.filter(product => 
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    // Apply sort
-    if (sortOption === 'priceLowToHigh') {
-      result = [...result].sort((a, b) => (a.onSale ? a.salePrice : a.price) - (b.onSale ? b.salePrice : b.price));
-    } else if (sortOption === 'priceHighToLow') {
-      result = [...result].sort((a, b) => (b.onSale ? b.salePrice : b.price) - (a.onSale ? a.salePrice : a.price));
-    } else if (sortOption === 'alphabetically') {
-      result = [...result].sort((a, b) => a.name.localeCompare(b.name));
-    }
-
-    setFilteredProducts(result);
-  }, [products, searchTerm, sortOption]);
-
+  
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.pageYOffset > 300);
@@ -141,7 +131,7 @@ export default function AllProduct() {
                 )}
                 ${(product.onSale ? product.salePrice : product.price).toFixed(2)}
               </p>
-              <Link href={`/product/${product.id}`} className={landingStyles.button}>View Details</Link>
+              <Link href={`/products/${product._id}`} className={landingStyles.button}>View Details</Link>
             </div>
           ))}
         </div>

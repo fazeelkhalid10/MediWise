@@ -3,15 +3,36 @@ import Link from 'next/link';
 import { Pill, Search, ShoppingCart, User } from 'lucide-react';
 import { signOut } from "next-auth/react";
 import styles from '@/styles/header.module.css';
+import Cart from './Cart';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  
   const searchInputRef = useRef(null);
+  
+  const [cartItems, setCartItems] = useState([
+    { id: 1, name: "Product 1", price: 10.0, quantity: 2 },
+    { id: 2, name: "Product 2", price: 15.0, quantity: 1 },
+  ]);
 
+  const handleRemoveItem = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
+
+  const handleUpdateQuantity = (id, quantity) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: quantity } : item
+      )
+    );
+  };
+
+  const handleCloseCart = () => {
+    setIsCartOpen(false);
+  };
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -36,9 +57,9 @@ export function Header() {
     setIsSearchExpanded(false);
   };
 
-  const handleCartToggle = () => {
-    setIsCartOpen(!isCartOpen);
-  };
+  // const handleCartToggle = () => {
+  //   setIsCartOpen(!isCartOpen);
+  // };
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`}>
@@ -68,7 +89,7 @@ export function Header() {
                 />
               </form>
             </div>
-            <button className={styles.headerIcon} onClick={handleCartToggle}>
+            <button className={styles.headerIcon} onClick={''}>
               <ShoppingCart size={24} />
             </button>
             <button className={styles.headerIcon}>
@@ -76,7 +97,7 @@ export function Header() {
             </button>
             <button 
               className={styles.logoutButton} 
-              onClick={() => signOut()} 
+              onClick={ ()=>signOut({ callbackUrl: "/login" })} 
               aria-label="Log out"
             >
               Logout
@@ -99,6 +120,16 @@ export function Header() {
             <Link href="/addproduct" className={styles.mobileNavLink}>Add product</Link>
           </div>
         )}
+
+{/* {isCartOpen && (
+        // <Cart
+        //   isOpen={isCartOpen}
+        //   onClose={handleCloseCart}
+        //   items={cartItems}
+        //   onRemoveItem={handleRemoveItem}
+        //   onUpdateQuantity={handleUpdateQuantity}
+        // />
+     // )} */}
       </div>
     </header>
   );
