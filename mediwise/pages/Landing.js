@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from "@/styles/Landing.module.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { ChevronLeft, ChevronRight, Percent, BadgePercent, ArrowUp, Package, LayoutGrid, ArrowUpCircle, MessageCircle, Video } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Percent, BadgePercent, ArrowUp, Package, LayoutGrid, ArrowUpCircle, MessageCircle } from 'lucide-react';
 
 
 export default function LandingPage(){
@@ -14,19 +14,7 @@ export default function LandingPage(){
   const [error, setError] = useState(null);
   
   const bannerItems = [
-<<<<<<< Updated upstream
 
-=======
-<<<<<<< HEAD
-    { id: 1, image: '/img2.png', alt: 'Friday Sale Brochure' },
-    { id: 2, image: '/img4.png', alt: 'Free Delivery Brochure' },
-    { id: 3, image: '/img1.png', alt: 'New Products Brochure' },
-    { id: 4, image: '/img5.png', alt: 'Health Tips Brochure' },
-    
-=======
-
->>>>>>> 8c5813251d23bb43b4354128c18fbfc5ffb5392b
->>>>>>> Stashed changes
   ];
 
   useEffect(() => {
