@@ -9,22 +9,31 @@ import { ChevronLeft, ChevronRight, Percent, BadgePercent, ArrowUp, Package, Lay
 
 export default function LandingPage(){
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   const bannerItems = [
-    { id: 1, image: '/sale-sale.jpg', alt: 'Friday Sale Brochure' },
-    { id: 2, image: '/free-delivery.jpg', alt: 'Free Delivery Brochure' },
-    { id: 3, image: '/new.jpg', alt: 'New Products Brochure' },
-    { id: 4, image: '/medi.jpg', alt: 'Health Tips Brochure' },
+
   ];
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentBannerIndex((prevIndex) => 
-        prevIndex === bannerItems.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/product');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data.products);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return () => clearInterval(timer);
+    fetchProducts();
   }, []);
 
   const goToPrevious = () => {
@@ -40,41 +49,18 @@ export default function LandingPage(){
   };
 
   const saleItems = [
-    { id: 1, name: 'Vitamin C Supplements', price: 9.99, salePrice: 7.99, image: '/vitamin-c.jpg' },
-    { id: 2, name: 'Pain Relief Gel', price: 12.99, salePrice: 10.99, image: '/pain-relief.jpg' },
-    { id: 3, name: 'Allergy Medicine', price: 15.99, salePrice: 13.99, image: '/allergy-med.jpg' },
-    { id: 4, name: 'First Aid Kit', price: 24.99, salePrice: 19.99, image: '/first-aid.jpg' },
-    { id: 5, name: 'Musa ki Bund', price: 99.99, salePrice: 9.99, image: '/musa.jfif' },
+
   ];
 
   const topSellingItems = [
-    { id: 1, name: 'Multivitamin Complex', price: 19.99, image: '/multivitamin.jpg' },
-    { id: 2, name: 'Antibacterial Hand Sanitizer', price: 3.99, image: '/hand-sanitizer.jpg' },
-    { id: 3, name: 'Digital Thermometer', price: 14.99, image: '/thermometer.jpg' },
-    { id: 4, name: 'Omega-3 Fish Oil', price: 22.99, image: '/fish-oil.jpg' },
-    { id: 5, name: 'Musa ki Bund', price: 99.99,  image: '/musa.jfif' },
+
   ];
 
   const bundles = [
-    { id: 1, name: 'Cold & Flu Relief Bundle', price: 29.99, image: '/cold-flu-bundle.jpg' },
-    { id: 2, name: 'Skincare Essentials Bundle', price: 39.99, image: '/skincare-bundle.jpg' },
-    { id: 3, name: 'Wellness Starter Pack', price: 49.99, image: '/wellness-bundle.jpg' },
-    { id: 4, name: 'Skincare Essentials Bundle', price: 39.99, image: '/skincare-bundle.jpg' },
-    { id: 5, name: 'Wellness Starter Pack', price: 49.99, image: '/wellness-bundle.jpg' },
+
   ];
 
-  const allItems = [
-    { id: 1, name: 'Aspirin', price: 5.99, image: '/aspirin.jpg' },
-    { id: 2, name: 'Bandages', price: 3.99, image: '/bandages.jpg' },
-    { id: 3, name: 'Cough Syrup', price: 8.99, image: '/cough-syrup.jpg' },
-    { id: 4, name: 'Sunscreen SPF 50', price: 12.99, image: '/sunscreen.jpg' },
-    { id: 5, name: 'Protein Powder', price: 24.99, image: '/protein-powder.jpg' },
-    { id: 6, name: 'Dental Floss', price: 2.99, image: '/dental-floss.jpg' },
-    { id: 7, name: 'Eye Drops', price: 7.99, image: '/eye-drops.jpg' },
-    { id: 8, name: 'Lip Balm', price: 3.49, image: '/lip-balm.jpg' },
-    { id: 9, name: 'Eye Drops', price: 7.99, image: '/eye-drops.jpg' },
-    { id: 10, name: 'Lip Balm', price: 3.49, image: '/lip-balm.jpg' },
-  ];
+
 
   return (
     <>
@@ -103,18 +89,25 @@ export default function LandingPage(){
             <BadgePercent className={styles.sectionIcon} />
           </h2>
           <div className={styles.itemGrid}>
-            {saleItems.map((item) => (
-              <div key={item.id} className={styles.item}>
-                <Image src={item.image} alt={item.name} width={200} height={200} />
-                <h3>{item.name}</h3>
-                <p className={styles.price}>
-                  <span className={styles.oldPrice}>${item.price.toFixed(2)}</span> 
-                  ${item.salePrice.toFixed(2)}
-                </p>
-                <Link href={`/product/${item.id}`} className={styles.button}>View Details</Link>
-              </div>
-            ))}
-          </div>
+    {saleItems.map((item) => (
+        <div key={item._id} className={styles.item}>
+            <Image 
+                src={item.image} 
+                alt={item.name} 
+                width={200} 
+                height={200} 
+            />
+            <h3>{item.name}</h3>
+            <p className={styles.price}>
+                <span className={styles.oldPrice}>${item.price.toFixed(2)}</span> 
+                ${item.salePrice.toFixed(2)}
+            </p>
+            <Link href={`/products/${item._id}`} className={styles.button}>View Details</Link>
+        </div>
+    ))}
+</div>
+
+
           <div className={styles.seeMoreContainer}>
             <Link href="/sale-items" className={styles.seeMoreButton}>See More</Link>
           </div>
@@ -166,12 +159,12 @@ export default function LandingPage(){
             <LayoutGrid className={styles.sectionIcon} />
           </h2>
           <div className={styles.itemGrid}>
-            {allItems.map((item) => (
+            {products.map((item) => (
               <div key={item.id} className={styles.item}>
                 <Image src={item.image} alt={item.name} width={150} height={150} />
                 <h3>{item.name}</h3>
                 <p className={styles.price}>${item.price.toFixed(2)}</p>
-                <Link href={`/product/${item.id}`} className={styles.button}>View Details</Link>
+                <Link href={`/products/${item.id}`} className={styles.button}>View Details</Link>
               </div>
             ))}
           </div>

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const uri = "mongodb+srv://User:User%40123@mediwise.hkyft.mongodb.net/?retryWrites=true&w=majority&appName=mediwise";
+const uri =process.env.MONGOB_URI;
 
 
 export const connectMongoDB = async () => {

@@ -35,6 +35,7 @@ const AddMedicine = ({session}) => {
   const priceRef = useRef(null);
   const quantityRef = useRef(null);
   const descriptionRef = useRef(null);
+  const [image, setImage] = useState(null);
 
   const [medicines, setMedicines] = useState(existingMedicines);
   useEffect(()=>{
@@ -59,40 +60,34 @@ const AddMedicine = ({session}) => {
         },[])
   const handleSubmit = (e) => {
     e.preventDefault();
-    const medicineData = {
-      
-      name: medicineNameRef.current?.value || '',
-      company: companyNameRef.current?.value || '',
-      price: Number(priceRef.current?.value) || 0,
-      quantity: Number(quantityRef.current?.value) || 0,
-      description: descriptionRef.current?.value || '',
-      userid:session.user.id
-    };
+    const formData = new FormData();
+    formData.append('name', medicineNameRef.current?.value || '');
+    formData.append('company', companyNameRef.current?.value || '');
+    formData.append('price', Number(priceRef.current?.value) || 0);
+    formData.append('quantity', Number(quantityRef.current?.value) || 0);
+    formData.append('description', descriptionRef.current?.value || '');
+    formData.append('userid', session.user.id);
+    formData.append('image', image);
   
-    console.log(medicineData)
-    fetch('/api/product',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json' 
-        },
-        body:JSON.stringify(medicineData)
-
-
-      }).then((res)=>res.json()).then((data)=>{console.log("Added successfully")
+    console.log(formData)
+    fetch('/api/product', {
+      method: 'POST',
+      body: formData, // No need for 'Content-Type'; it will be set automatically
+    }).then((res)=>res.json()).then((data)=>{console.log("Added successfully")
 
         console.log(data.data);
         setMedicines(data.data)
       })
 
     //setMedicines([...medicines, medicineData]);
-    console.log('Medicine data:', medicineData);
+    console.log('Medicine data:', formData);
     // Reset fields after submission
     if (companyNameRef.current) companyNameRef.current.value = '';
     if (medicineNameRef.current) medicineNameRef.current.value = '';
     if (priceRef.current) priceRef.current.value = '';
     if (quantityRef.current) quantityRef.current.value = '';
     if (descriptionRef.current) descriptionRef.current.value = '';
+    setImage(null);
   };
 
   return (
@@ -153,6 +148,16 @@ const AddMedicine = ({session}) => {
                 required
                 className={styles.textarea}
               />
+              <div className={styles.formGroup}>
+                <label type="file"> UploadFile</label>
+                <input
+                       type="file"
+                       name="image"
+                      onChange={(e) => setImage(e.target.files[0])}
+                      required
+                />
+
+              </div>
             </div>
             <button onClick={handleSubmit} className={styles.submitButton}>Add Medicine</button>
           </div>
