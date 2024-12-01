@@ -91,7 +91,7 @@ console.log(role);
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <Image
-          src="/image_35.png" 
+          src="/Register.png" 
           alt="Welcome Image"
           layout="fill" 
           objectFit="cover" 
@@ -100,15 +100,7 @@ console.log(role);
       </div>
 
       <div className={styles.overlay}>
-        <div className={styles.logoContainer}>
-          <Image
-            src="/image_31.png"
-            alt="Logo"
-            width={200} 
-            height={200} 
-            className={styles.logo}
-          />
-        </div>
+
 
         <p className={styles.Register}>Register</p>
         <p className={styles.text}>
@@ -165,19 +157,22 @@ console.log(role);
 
         <button onClick={handleSubmit} className={styles.RegisterButton}>Register</button>
 
+        <div className={styles.divider}></div>
+
         <p className={styles.register}>
           Already have an account? 
           <Link href="/login">
             <span className={styles.reg}>Login</span>
-          </Link>
-        </p>
-        <p className={styles.register}>
-          Sign up as Admin? 
+          </Link>        <p className={styles.register}>
+          <div className={styles.divider}></div>
+          Sign up as Seller? 
           <Link href="/Register1">
             <span className={styles.reg}>Register</span>
           </Link>
           
         </p>
+        </p>
+
       </div>
     </div>
   );

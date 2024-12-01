@@ -66,7 +66,7 @@ export default function Login() {
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <Image
-          src="/image_35.png" 
+          src="/medi.jpg" 
           alt="Welcome Image"
           layout="fill" 
           objectFit="cover" 
@@ -110,16 +110,7 @@ export default function Login() {
 
         <div className={styles.divider}></div>
 
-        <MagneticButton customStyle={true} customClass={styles.googleButton} className={styles.googleButton}>
-          <Image
-            src="/logo.png" 
-            alt="Google Logo"
-            width={20} 
-            height={20} 
-            className={styles.icon} 
-          />
-          Continue with Google
-        </MagneticButton>
+
 
         <p className={styles.register}>
           Don’t have an account? 

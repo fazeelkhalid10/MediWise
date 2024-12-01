@@ -91,7 +91,7 @@ console.log(role);
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <Image
-          src="/image_35.png" 
+          src="/Register1.png" 
           alt="Welcome Image"
           layout="fill" 
           objectFit="cover" 
@@ -100,17 +100,9 @@ console.log(role);
       </div>
 
       <div className={styles.overlay}>
-        <div className={styles.logoContainer}>
-          <Image
-            src="/image_31.png"
-            alt="Logo"
-            width={200} 
-            height={200} 
-            className={styles.logo}
-          />
-        </div>
 
-        <p className={styles.Register}>Admin Register</p>
+
+        <p className={styles.Register}>Seller Register</p>
         <p className={styles.text}>
           Create an <span className={styles.highlight}><b>account</b></span> to access all the features of <span className={styles.highlight1}><b>Mediwise!</b></span>
         </p>
@@ -165,11 +157,20 @@ console.log(role);
 
         <button onClick={handleSubmit} className={styles.RegisterButton}>Register</button>
 
+        <div className={styles.divider}></div>
+
         <p className={styles.register}>
           Already have an account? 
           <Link href="/login">
             <span className={styles.reg}>Login</span>
+          </Link>       <p className={styles.register}>
+          <div className={styles.divider}></div>
+          Sign up as Buyer? 
+          <Link href="/Register">
+            <span className={styles.reg}>Register</span>
           </Link>
+          
+        </p>
 
         </p>
       </div>

@@ -29,9 +29,9 @@
   font-weight: bold;
 }
 .error {
-  color: #4B003B; 
+  color: #009688; 
   background: rgba(255, 255, 255, 0.2); 
-  border: 1px solid #4B003B; 
+  border: 1px solid #009688; 
   padding-top: 70px;
   padding: 10px; 
   border-radius: 15px; 
@@ -47,7 +47,7 @@
 .login {
   font-size: 2.25rem; /* Responsive font size */
   font-weight: bold;
-  color: #4B003B;
+  color: #009688;
   align-self: flex-start; 
   margin-left: 5%; 
 }
@@ -67,7 +67,7 @@
 .inputContainer {
   position: relative; 
   margin-bottom: 1.25rem; /* Responsive margin */
-  color: #4B003B;
+  color: #009688;
   width: 90%; 
   max-width: 350px; 
   height: 55px;
@@ -87,23 +87,23 @@
 .input {
   width: 100%;
   padding: 0.625rem 0.625rem 0.625rem 2.5rem; /* Responsive padding */
-  border: 2px solid #4B003B; 
+  border: 2px solid #009688; 
   border-radius: 1rem; /* Responsive border radius */
   font-size: 1rem; /* Responsive font size */
   background: transparent;
-  color: #4B003B;
+  color: #009688;
 }
 
 .input:focus {
   outline: none;
-  border: 2px solid #4B003B; 
+  border: 2px solid #009688;
 }
 
 .loginButton, .googleButton {
   display: flex; 
   align-items: center; 
   justify-content: center; 
-  background-color: #4B003B; 
+  background-color: #009688; 
   color: white; 
   padding: 0.625rem 1.25rem; /* Responsive padding */
   border: none; 
@@ -117,16 +117,16 @@
   transition: transform 0.3s, background-color 0.2s ease-in-out;
 }
 .loginButton:hover {
-  background-color: #9b0079;
+  background-color:#009688;
 }
 .loginButton:active{
-  outline: 2px solid #4B003B;
+  outline: 2px solid #009688;
   background-color: #FF5E6C; 
 }
 
 .googleButton:active {
-  color: #4B003B;
-  outline: 2px solid #FF5E6C; 
+  color: #009688;
+  outline: 2px solid #bba4b6; 
 }
 .googleButton:hover {
   background-color: #bba4b6;
@@ -142,7 +142,7 @@
 }
 
 .reg {
-  color: #FF5E6C;
+  color:#009688;
   cursor: pointer;
   font-weight: bold;
 }
@@ -161,15 +161,7 @@
   width: 100%; 
 }
 
-.forgotPassword {
-  padding-top: 0.625rem; /* Responsive padding */
-  padding-bottom: 0.625rem; /* Responsive padding */
-  color: #4B003B;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.875rem; /* Responsive font size */
-  text-decoration: underline;
-}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
