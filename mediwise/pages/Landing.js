@@ -112,7 +112,7 @@ export default function LandingPage(){
 
 
           <div className={styles.seeMoreContainer}>
-            <Link href="/sale-items" className={styles.seeMoreButton}>See More</Link>
+            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
         </section>
 
@@ -132,7 +132,7 @@ export default function LandingPage(){
             ))}
           </div>
           <div className={styles.seeMoreContainer}>
-            <Link href="/top-selling" className={styles.seeMoreButton}>See More</Link>
+            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
         </section>
 
@@ -152,7 +152,7 @@ export default function LandingPage(){
             ))}
           </div>
           <div className={styles.seeMoreContainer}>
-            <Link href="/bundles" className={styles.seeMoreButton}>See More</Link>
+            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
         </section>
 
@@ -172,7 +172,7 @@ export default function LandingPage(){
             ))}
           </div>
           <div className={styles.seeMoreContainer}>
-            <Link href="/all-items" className={styles.seeMoreButton}>See More</Link>
+            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
         </section>
 

@@ -74,7 +74,7 @@ export default function AboutUs() {
           <div className={styles.foundersGrid}>
           <div className={styles.founder}>
           <Image
-            src="/musa.jfif?height=200&width=200"
+            src="/musa.png?height=200&width=200"
             alt="Musa Bund"
             width={200}
             height={200}
@@ -85,7 +85,7 @@ export default function AboutUs() {
          </div>
         <div className={styles.founder}>
          <Image
-           src="/placeholder.svg?height=200&width=200"
+           src="/er.jpg?height=200&width=200"
            alt="Fazeel Khalid"
            width={200}
            height={200}
@@ -96,7 +96,7 @@ export default function AboutUs() {
         </div>
         <div className={styles.founder}>
         <Image
-        src="/placeholder.svg?height=200&width=200"
+        src="/butt.png?height=200&width=200"
         alt="Hassan Butt"
         width={200}
         height={200}
