@@ -14,7 +14,10 @@ export default function LandingPage(){
   const [error, setError] = useState(null);
   
   const bannerItems = [
-
+    { id: 1, image: '/img2.png', alt: 'Friday Sale Brochure' },
+    { id: 2, image: '/img4.png', alt: 'Free Delivery Brochure' },
+    { id: 3, image: '/img1.png', alt: 'New Products Brochure' },
+    { id: 4, image: '/img5.png', alt: 'Health Tips Brochure' },
   ];
 
   useEffect(() => {
@@ -109,7 +112,7 @@ export default function LandingPage(){
 
 
           <div className={styles.seeMoreContainer}>
-            <Link href="/sale-items" className={styles.seeMoreButton}>See More</Link>
+            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
         </section>
 
@@ -129,7 +132,7 @@ export default function LandingPage(){
             ))}
           </div>
           <div className={styles.seeMoreContainer}>
-            <Link href="/top-selling" className={styles.seeMoreButton}>See More</Link>
+            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
         </section>
 
@@ -149,7 +152,7 @@ export default function LandingPage(){
             ))}
           </div>
           <div className={styles.seeMoreContainer}>
-            <Link href="/bundles" className={styles.seeMoreButton}>See More</Link>
+            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
         </section>
 
@@ -169,7 +172,7 @@ export default function LandingPage(){
             ))}
           </div>
           <div className={styles.seeMoreContainer}>
-            <Link href="/all-items" className={styles.seeMoreButton}>See More</Link>
+            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
         </section>
 
