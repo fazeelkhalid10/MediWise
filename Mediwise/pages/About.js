@@ -75,7 +75,7 @@ export default function AboutUs() {
           <div className={styles.founder}>
           <Image
             src="/musa.png?height=200&width=200"
-            alt="Musa Bund"
+            alt="Musa Baig"
             width={200}
             height={200}
              className={styles.founderImage}
@@ -86,7 +86,7 @@ export default function AboutUs() {
         <div className={styles.founder}>
          <Image
            src="/er.jpg?height=200&width=200"
-           alt="Fazeel Khalid"
+           alt="Fazeel Lomru"
            width={200}
            height={200}
            className={styles.founderImage}
