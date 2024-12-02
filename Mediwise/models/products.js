@@ -18,6 +18,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  quantity: { // Corrected typo
+    type: Number,
+    required: true,
+  },
   company: { // Corrected typo
     type: String,
     required: true,
@@ -26,6 +30,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  
 }, { timestamps: true });
 
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema); // Corrected model name

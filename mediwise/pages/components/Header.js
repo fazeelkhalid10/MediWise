@@ -1,25 +1,36 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import Link from 'next/link';
-import { Pill, Search, ShoppingCart, User } from 'lucide-react';
-import { signOut } from "next-auth/react";
+import { Pill, Search, ShoppingCart, User, User2 } from 'lucide-react';
+import { signOut, useSession } from "next-auth/react";
 import styles from '@/styles/header.module.css';
 import Cart from './Cart';
+import CartContext, { CartContextProvider } from '@/helper/cart-context';
+
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  
+  const context=useContext(CartContext)
   const searchInputRef = useRef(null);
-  
+  const {data:session}=useSession();
+
   const [cartItems, setCartItems] = useState([
     { id: 1, name: "Product 1", price: 10.0, quantity: 2 },
     { id: 2, name: "Product 2", price: 15.0, quantity: 1 },
   ]);
+  useEffect(()=>{
 
+    context.addItem(session.user.id);
+ // setCartItems(context.items);
+ console.log(context.totalAmount);
+  
+  },[]);
+  
   const handleRemoveItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+
+    context.removeitem(session.user.id,id);
   };
 
   const handleUpdateQuantity = (id, quantity) => {
@@ -72,7 +83,13 @@ export function Header() {
           <nav className={styles.desktopNav}>
             <Link href="/Landing" className={styles.headerNavLink}>Home</Link>
             <Link href="/AllProduct" className={styles.headerNavLink}>All Products</Link>
-            <Link href="/addproduct" className={styles.headerNavLink}>Add Product</Link>
+            {session.user.role==="admin"&&
+            
+            <Link href="/addproduct" className={styles.headerNavLink}>Add Product </Link>
+
+            
+            
+            }
             <Link href="/About" className={styles.headerNavLink}>About Us</Link>
           </nav>
           <div className={styles.headerActions}>
@@ -89,11 +106,26 @@ export function Header() {
                 />
               </form>
             </div>
-            <button className={styles.headerIcon} onClick={''}>
+            <button className={styles.headerIcon} onClick={()=>setIsCartOpen(true)}>
               <ShoppingCart size={24} />
+            {context.items.length>0?(
+        <span className={styles.cartCount}>{context.items.length}</span>
+
+
+
+            ):(
+
+        <span className={styles.cartCount}>0</span>
+
+            )
+
+
+            }  
+      
+     
             </button>
-            <button className={styles.headerIcon}>
-              <User size={24} />
+            <button className={styles.headerIcon} >
+              <User2/>
             </button>
             <button 
               className={styles.logoutButton} 
@@ -121,15 +153,15 @@ export function Header() {
           </div>
         )}
 
-{/* {isCartOpen && (
-        // <Cart
-        //   isOpen={isCartOpen}
-        //   onClose={handleCloseCart}
-        //   items={cartItems}
-        //   onRemoveItem={handleRemoveItem}
-        //   onUpdateQuantity={handleUpdateQuantity}
-        // />
-     // )} */}
+{isCartOpen && (
+        <Cart
+          isOpen={isCartOpen}
+          onClose={handleCloseCart}
+          items={context.items}
+          onRemoveItem={handleRemoveItem}
+          onUpdateQuantity={handleUpdateQuantity}
+        />
+     )} 
       </div>
     </header>
   );

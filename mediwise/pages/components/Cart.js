@@ -2,8 +2,11 @@ import React from 'react';
 import { X, Trash2 } from 'lucide-react';
 
 import styles from '@/styles/cart.module.css'
+import { useRouter } from 'next/router';
 
 export default function Cart({ isOpen, onClose, items = [], onRemoveItem, onUpdateQuantity }) {
+
+  const router=useRouter();
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   if (!isOpen) return null;
@@ -35,7 +38,7 @@ export default function Cart({ isOpen, onClose, items = [], onRemoveItem, onUpda
                     onChange={(e) => onUpdateQuantity(item.id, parseInt(e.target.value))}
                     className={styles.quantityInput}
                   />
-                  <button onClick={() => onRemoveItem(item.id)} className={styles.removeButton}>
+                  <button onClick={() => onRemoveItem(item.productid)} className={styles.removeButton}>
                     <Trash2 size={20} />
                   </button>
                 </div>
@@ -47,7 +50,7 @@ export default function Cart({ isOpen, onClose, items = [], onRemoveItem, onUpda
           <div className={styles.total}>
             <strong>Total:</strong> ${total.toFixed(2)}
           </div>
-          <button className={styles.checkoutButton}>Proceed to Checkout</button>
+          <button className={styles.checkoutButton} onClick={()=>router.push('/placeorder')}>Proceed to Checkout</button>
         </div>
       </div>
     </div>

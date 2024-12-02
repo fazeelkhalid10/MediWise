@@ -57,7 +57,7 @@ export default async function handler(req, res) {
           imageUrl,
         });
 
-        const products = await Product.find();
+        const products = await Product.find({userid:userid});
 
         return res.status(200).json({ message: 'Successfully entered', data: products });
       } catch (error) {

@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useContext, useEffect, useState } from 'react';
+
 import { useRouter } from 'next/router';
 import { Star, ShoppingCart, Heart } from 'lucide-react';
 import styles from "@/styles/productdetails.module.css";
 import { Header } from '@/pages/components/Header';
 import { Footer } from '@/pages/components/Footer';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
+import Image from 'next/image';
+import CartContext from '@/helper/cart-context';
+import useSWR from 'swr';
+
 
 
 // Mock product data (replace with actual data fetching in a real application)
-const product = {
-  id: '1',
-  name: 'Paracetamol',
-  description: 'Paracetamol is a common pain reliever and fever reducer. It is used to treat many conditions such as headaches, body aches, toothaches, and colds.',
-  price: 5.99,
-  image: '/images/paracetamol.jpg',
-  category: 'Pain Relief',
-  stock: 50,
-  rating: 4.5,
-  reviews: [
-    { id: '1', user: 'John Doe', rating: 5, comment: 'Works great for headaches!' },
-    { id: '2', user: 'Jane Smith', rating: 4, comment: 'Good product, but a bit pricey.' },
-  ],
-};
+
 // This will run server-side before rendering the page
 export async function getServerSideProps(context) {
-  const { params } = context;  // If you're using dynamic routing, this will get the route params
+  const { params } = context;
+  const session = await getSession(context);
+    // If you're using dynamic routing, this will get the route params
 const id=params.id;
   try {
     // Perform the fetch request to the API endpoint
@@ -39,11 +32,40 @@ const id=params.id;
 
     // If the fetch was successful, parse the JSON data
     const data = await res.json();
-console.log(data);
+    console.log(data);
+
+    const res1= await fetch('http://localhost:3000/api/getreview',
+      {
+    
+    
+        method:"POST",
+        headers: {
+          'Content-Type': 'application/json' 
+        },
+        
+        body:JSON.stringify(
+          {
+        //userid:session.user.id,
+        productid:id
+       
+        
+        
+        
+          })
+        
+        
+        
+                });
+              
+    
+              const data1 = await res1.json();
+
+console.log(data1);
     // Return the data as props for your page component
     return {
       props: {
-        productDetails: data.data, // Pass the fetched data as props
+        productDetails: data.data,
+        review:data1.review // Pass the fetched data as props
       },
     };
   } catch (error) {
@@ -53,60 +75,58 @@ console.log(data);
     return {
       props: {
         productDetails: null,
+        review:null
       },
     };
   }
 }
 
-function ProductDetails ({productDetails}){
+function ProductDetails ({productDetails,review}){
   const router = useRouter();
   const { id } = router.query;
+  const { data: session } = useSession();
 
   const [newComment, setNewComment] = useState('');
   const [newRating, setNewRating] = useState(5);
-  const [reviews, setReviews] = useState(product.reviews);
+  const [reviews, setReviews] = useState(review);
+function getreview(uri)
+{
+   fetch(uri,
+    {
+  
+  
+      method:"POST",
+      headers: {
+        'Content-Type': 'application/json' 
+      },
+      
+      body:JSON.stringify(
+        {
+      //userid:session.user.id,
+      productid:productDetails._id
+     
+      
+      
+      
+        })
+      
+      
+      
+              }).then((res)=>res.json()).then((data)=>setReviews(data.review));
 
+
+}
   // In a real application, you would fetch the product data based on the ID
   // For now, we'll use the mock data
-  const { data: session } = useSession();
-useEffect(()=>{
-
-fetch('/api/getreview',
-  {
+// useEffect(()=>{
 
 
-    method:"POST",
-    headers: {
-      'Content-Type': 'application/json' 
-    },
-    
-    body:JSON.stringify(
-      {
-    userid:session.user.id,
-    productid:productDetails._id,
-   
-    
-    
-    
-      })
-    
-    
-    
-            }).then((res)=>res.json()).then((data)=>            setReviews(data.review)
-          )
-
-
-},[])
-
+// },[])
+useSWR('http://localhost:3000/api/getreview',getreview);
   const handleCommentSubmit = (e) => {
     e.preventDefault();
     if (newComment.trim()) {
-      const newReview = {
-        id: String(reviews.length + 1),
-        user: 'Current User', // In a real app, you'd get this from authentication
-        rating: newRating,
-        comment: newComment.trim(),
-      };
+    
 
       fetch('/api/review',
         {
@@ -128,14 +148,17 @@ stars:newRating
 
 
 
-        }).then((res)=>res.json()).then((data)=>console.log(data))
-      setReviews([...reviews, newReview]);
+        }).then((res)=>res.json()).then((data)=>getreview('http://localhost:3000/api/getreview'))
+        
+    // setReviews([...reviews, newReview]);
       setNewComment('');
       setNewRating(5);
     }
   };
+  const context=useContext(CartContext);
 function addtocart(productid,userid)
 {
+;
 
 const data=
 {
@@ -155,7 +178,11 @@ body:JSON.stringify(data)
 
 
 
-}).then((res)=>res.json).then((data)=>console.log(data));
+}).then((res)=>res.json).then((data)=>{console.log(data)
+
+
+  context.addItem(session.user.id)
+});
 
 
 }
@@ -166,17 +193,13 @@ body:JSON.stringify(data)
     <Header/>
     <div className={styles.productDetails}>
       <div className={styles.productImage}>
-        <Image src={product.image} alt={product.name} width={400} height={400} layout="responsive" />
+              <Image src={productDetails.imageUrl} alt={productDetails.name} width={400} height={400} />
+              {/* <Image src={productDetails.image} alt={productDetails.name} width={400} height={400} layout="responsive" /> */}
       </div>
       <div className={styles.productInfo}>
         <h1 className={styles.productName}>{productDetails.name}</h1>
         <p className={styles.productCategory}>{productDetails.company}</p>
-        <div className={styles.productRating}>
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className={i < Math.floor(product.rating) ? styles.starFilled : styles.starEmpty} />
-          ))}
-          <span>{product.rating.toFixed(1)}</span>
-        </div>
+       
         <p className={styles.productPrice}>${productDetails.price}</p>
         <p className={styles.productDescription}>{productDetails.description}</p>
         <p className={styles.productStock}>In stock: {productDetails.quantity}</p>

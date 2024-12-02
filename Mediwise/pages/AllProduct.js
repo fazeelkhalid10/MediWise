@@ -58,7 +58,7 @@ export default function AllProduct() {
   //   setFilteredProducts(allProducts);
   // }, []);
 
-  
+  console.log(filteredProducts);
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.pageYOffset > 300);

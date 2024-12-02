@@ -6,15 +6,15 @@ import User from "@/models/user";
 export default async function handler(req, res) {
     // Ensure that this function only handles POST requests
     if (req.method === "POST") {
-        const { userid, productid } = req.body;
+        const {productid } = req.body;
 
         // Connect to MongoDB
         await connectMongoDB();
 
-        console.log("UserID:", userid, "ProductID:", productid);
+        
 
         // Fetch reviews related to the specified user and product
-        const rev = await review.find({ userid: userid, productid: productid });
+        const rev = await review.find({productid: productid });
 
         console.log("Reviews:", rev);
 
