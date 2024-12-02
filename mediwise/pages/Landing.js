@@ -14,7 +14,10 @@ export default function LandingPage(){
   const [error, setError] = useState(null);
   
   const bannerItems = [
-
+    { id: 1, image: '/img2.png', alt: 'Friday Sale Brochure' },
+    { id: 2, image: '/img4.png', alt: 'Free Delivery Brochure' },
+    { id: 3, image: '/img1.png', alt: 'New Products Brochure' },
+    { id: 4, image: '/img5.png', alt: 'Health Tips Brochure' },
   ];
 
   useEffect(() => {
