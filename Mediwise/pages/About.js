@@ -80,8 +80,8 @@ export default function AboutUs() {
             height={200}
              className={styles.founderImage}
           />
-         <h3>Musa Bund</h3>
-         <p>Expert in pharmaceutical operations and customer care "Bund Specialist"</p>
+         <h3>Musa Baig</h3>
+         <p>Expert in pharmaceutical operations and customer care </p>
          </div>
         <div className={styles.founder}>
          <Image
@@ -91,8 +91,8 @@ export default function AboutUs() {
            height={200}
            className={styles.founderImage}
          />
-        <h3>Fazeel Khalid</h3>
-        <p>Visionary leader with a passion for healthcare innovation</p>
+        <h3>Fazeel Lomru</h3>
+        <p>Visionary leader with a passion for healthcare innovation "Bund Specialist"</p>
         </div>
         <div className={styles.founder}>
         <Image
