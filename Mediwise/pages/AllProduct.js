@@ -7,6 +7,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Search, Grid, List, ArrowUpCircle, MessageCircle } from 'lucide-react';
 import useProducts from './hooks/useProducts';
+import { useSession } from 'next-auth/react';
 
 export default function AllProduct() {
   
@@ -74,7 +75,15 @@ export default function AllProduct() {
       behavior: 'smooth'
     });
   };
+  const{data:session,status}=useSession();
 
+  if(status==="loading")
+    {
+  
+  return <>Loading...</>
+  
+  
+    }
   return (
     <>
       <Header />

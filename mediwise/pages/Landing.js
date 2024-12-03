@@ -5,6 +5,7 @@ import styles from "@/styles/Landing.module.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ChevronLeft, ChevronRight, Percent, BadgePercent, ArrowUp, Package, LayoutGrid, ArrowUpCircle, MessageCircle } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 
 
 export default function LandingPage(){
@@ -62,7 +63,15 @@ export default function LandingPage(){
   const bundles = [
 
   ];
+const{data:session,status}=useSession();
 
+if(status==="loading")
+  {
+
+return <>Loading...</>
+
+
+  }
 
 
   return (
@@ -167,7 +176,7 @@ export default function LandingPage(){
                 <Image src={item.image} alt={item.name} width={150} height={150} />
                 <h3>{item.name}</h3>
                 <p className={styles.price}>${item.price.toFixed(2)}</p>
-                <Link href={`/products/${item.id}`} className={styles.button}>View Details</Link>
+                <Link href={`/products/${item._id}`} className={styles.button}>View Details</Link>
               </div>
             ))}
           </div>
