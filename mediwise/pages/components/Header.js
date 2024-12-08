@@ -4,7 +4,9 @@ import { Pill, Search, ShoppingCart, User, User2 } from 'lucide-react';
 import { signOut, useSession } from "next-auth/react";
 import styles from '@/styles/header.module.css';
 import Cart from './Cart';
+import useProducts from '../hooks/useProducts';
 import CartContext, { CartContextProvider } from '@/helper/cart-context';
+import Image from 'next/image';
 
 
 export function Header() {
@@ -13,10 +15,19 @@ export function Header() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const context=useContext(CartContext)
+
   const searchInputRef = useRef(null);
   const {data:session,status}=useSession();
 
  
+  const {
+    filteredProducts,
+    searchTerm,
+    setSearchTerm,
+    setFilteredProducts
+  } = useProducts();
+
+  console.log(filteredProducts);
   useEffect(()=>{
 
     context.addItem(session.user.id);
@@ -99,19 +110,16 @@ export function Header() {
             <Link href="/About" className={styles.headerNavLink}>About Us</Link>
           </nav>
           <div className={styles.headerActions}>
-            <div className={`${styles.searchContainer} ${isSearchExpanded ? styles.expanded : ''}`}>
-              <button className={styles.headerIcon} onClick={handleSearchToggle}>
-                <Search size={24} />
-              </button>
-              <form onSubmit={handleSearchSubmit} className={styles.searchForm}>
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder="Search..."
-                  className={styles.searchInput}
-                />
-              </form>
-            </div>
+          <div className={styles.searchContainer}>
+            <Search className={styles.searchIcon} />
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={styles.searchInput}
+            />
+          </div>
             <button className={styles.headerIcon} onClick={()=>setIsCartOpen(true)}>
               <ShoppingCart size={24} />
             {context.items.length>0?(
@@ -175,6 +183,42 @@ export function Header() {
           onUpdateQuantity={handleUpdateQuantity}
         />
      )} 
+
+{searchTerm && (
+  <div className={styles.fullPageDropdown}>
+    <div className={styles.dropdownHeader}>
+      <p className={styles.searchTitle}>Showing results for: "{searchTerm}"</p>
+    </div>
+    <div className={styles.dropdownBody}>
+      {filteredProducts.length > 0 ? (
+        <ul className={styles.resultList}>
+          {filteredProducts.map((product) => (
+            <li key={product.id} className={styles.resultItem}>
+              <Link href={`/products/${product._id}`} className={styles.resultLink}>
+                <div className={styles.resultContent}>
+                <Image src={product.image} alt={product.name} width={100} height={60} />
+                  <div className={styles.productDetails}>
+                    <h3 className={styles.productName}>{product.name}</h3>
+                    <p className={styles.price}>
+                      {product.onSale && (
+                        <span className={styles.oldPrice}>${product.price.toFixed(2)}</span>
+                      )}
+                      ${(product.onSale ? product.salePrice : product.price).toFixed(2)}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className={styles.noResults}>No items found</p>
+      )}
+    </div>
+  </div>
+)}
+
+
       </div>
     </header>
   );
