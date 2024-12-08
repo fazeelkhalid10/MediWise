@@ -30,6 +30,35 @@
   margin: 0 auto;
   padding: 0 1rem;
 }
+.container {
+  position: relative; /* Ensure positioning context for dropdown */
+}
+
+.dropdownList {
+  position: absolute;
+  top: 55px; /* Adjust based on button size */
+  right: 0; /* Align dropdown to the right side */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 200px; /* Adjust width as needed */
+}
+
+
+.dropdownList li {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: default;
+}
+
+.dropdownList li:hover {
+  background-color: #f0f0f0; /* Optional hover effect */
+}
 
 .navContent {
   display: flex;

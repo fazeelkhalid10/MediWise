@@ -55,6 +55,7 @@ export default async function handler(req, res) {
           company,
           quantity,
           imageUrl,
+          isfeature:false
         });
 
         const products = await Product.find({userid:userid});

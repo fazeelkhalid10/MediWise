@@ -14,12 +14,9 @@ export function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const context=useContext(CartContext)
   const searchInputRef = useRef(null);
-  const {data:session}=useSession();
+  const {data:session,status}=useSession();
 
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Product 1", price: 10.0, quantity: 2 },
-    { id: 2, name: "Product 2", price: 15.0, quantity: 1 },
-  ]);
+ 
   useEffect(()=>{
 
     context.addItem(session.user.id);
@@ -40,7 +37,11 @@ export function Header() {
       )
     );
   };
+  const [showList, setShowList] = useState(false);
 
+  const toggleList = () => {
+    setShowList((prev) => !prev);
+  };
   const handleCloseCart = () => {
     setIsCartOpen(false);
   };
@@ -67,7 +68,12 @@ export function Header() {
     console.log('Search submitted:', searchInputRef.current?.value);
     setIsSearchExpanded(false);
   };
-
+  if(status==="loading")
+    {
+  
+  return <div>Loading...</div>;
+  
+    }
   // const handleCartToggle = () => {
   //   setIsCartOpen(!isCartOpen);
   // };
@@ -124,9 +130,16 @@ export function Header() {
       
      
             </button>
-            <button className={styles.headerIcon} >
+            <button className={styles.headerIcon} onClick={()=>toggleList()} >
               <User2/>
             </button>
+            {showList && (
+        <ul className={styles.dropdownList}>
+          
+          <li>Email: {session.user.email}</li>
+          <li>Role: {session.user.role}</li>
+        </ul>
+      )}
             <button 
               className={styles.logoutButton} 
               onClick={ ()=>signOut({ callbackUrl: "/login" })} 

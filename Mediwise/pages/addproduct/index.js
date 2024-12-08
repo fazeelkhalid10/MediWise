@@ -38,6 +38,50 @@ const AddMedicine = ({session}) => {
   const [image, setImage] = useState(null);
 
   const [medicines, setMedicines] = useState(existingMedicines);
+  function removefeature(id)
+  {
+ console.log("hello");
+ console.log(id)
+ fetch('/api/removefeature',
+   {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json' 
+     },
+     body:JSON.stringify({id:id})
+ 
+   }
+ 
+ 
+   ).then((res)=>res.json()).then((data)=>{console.log("Featured successfully")});
+ 
+ 
+ 
+ 
+ 
+  }
+ function makefeature(id)
+ {
+console.log("hello");
+console.log(id)
+fetch('/api/makefeature',
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json' 
+    },
+    body:JSON.stringify({id:id})
+
+  }
+
+
+  ).then((res)=>res.json()).then((data)=>{console.log("Featured successfully")});
+
+
+
+
+
+ }
   useEffect(()=>{
 
 
@@ -172,15 +216,19 @@ const AddMedicine = ({session}) => {
                   <th>Company</th>
                   <th>Price</th>
                   <th>Quantity</th>
+                  <th>Action</th>
+
                 </tr>
               </thead>
               <tbody>
                 {medicines.map((medicine) => (
-                  <tr key={medicine.id}>
+                  <tr key={medicine._id}>
                     <td>{medicine.name}</td>
                     <td>{medicine.company}</td>
                     <td>${medicine.price.toFixed(2)}</td>
                     <td>{medicine.quantity}</td>
+                    <td><button onClick={()=>makefeature(medicine._id)}>Add to features</button><button onClick={()=>removefeature(medicine._id)}>Remove features</button></td>
+
                   </tr>
                 ))}
               </tbody>

@@ -95,55 +95,9 @@ return <>Loading...</>
           </button>
         </section>
 
-        <section className={styles.saleItems}>
-          <h2 className={styles.sectionTitle}>
-            Sale Items
-            <BadgePercent className={styles.sectionIcon} />
-          </h2>
-          <div className={styles.itemGrid}>
-    {saleItems.map((item) => (
-        <div key={item._id} className={styles.item}>
-            <Image 
-                src={item.image} 
-                alt={item.name} 
-                width={200} 
-                height={200} 
-            />
-            <h3>{item.name}</h3>
-            <p className={styles.price}>
-                <span className={styles.oldPrice}>${item.price.toFixed(2)}</span> 
-                ${item.salePrice.toFixed(2)}
-            </p>
-            <Link href={`/products/${item._id}`} className={styles.button}>View Details</Link>
-        </div>
-    ))}
-</div>
+    
 
-
-          <div className={styles.seeMoreContainer}>
-            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
-          </div>
-        </section>
-
-        <section className={styles.topSelling}>
-          <h2 className={styles.sectionTitle}>
-            Top Selling Items
-            <ArrowUp className={styles.sectionIcon} />
-          </h2>
-          <div className={styles.itemGrid}>
-            {topSellingItems.map((item) => (
-              <div key={item.id} className={styles.item}>
-                <Image src={item.image} alt={item.name} width={200} height={200} />
-                <h3>{item.name}</h3>
-                <p className={styles.price}>${item.price.toFixed(2)}</p>
-                <Link href={`/product/${item.id}`} className={styles.button}>View Details</Link>
-              </div>
-            ))}
-          </div>
-          <div className={styles.seeMoreContainer}>
-            <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
-          </div>
-        </section>
+     
 
         <section className={styles.bundles}>
           <h2 className={styles.sectionTitle}>
@@ -151,13 +105,13 @@ return <>Loading...</>
             <Package className={styles.sectionIcon} />
           </h2>
           <div className={styles.itemGrid}>
-            {bundles.map((bundle) => (
-              <div key={bundle.id} className={styles.item}>
-                <Image src={bundle.image} alt={bundle.name} width={200} height={200} />
-                <h3>{bundle.name}</h3>
-                <p className={styles.price}>${bundle.price.toFixed(2)}</p>
-                <Link href={`/bundle/${bundle.id}`} className={styles.button}>View Bundle</Link>
-              </div>
+            {products.filter(x=>x.isfeature===true).map((item) => (
+              <div key={item.id} className={styles.item}>
+              <Image src={item.image} alt={item.name} width={150} height={150} />
+              <h3>{item.name}</h3>
+              <p className={styles.price}>${item.price.toFixed(2)}</p>
+              <Link href={`/products/${item._id}`} className={styles.button}>View Details</Link>
+            </div>
             ))}
           </div>
           <div className={styles.seeMoreContainer}>

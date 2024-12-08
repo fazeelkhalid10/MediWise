@@ -38,6 +38,7 @@ export const handler = NextAuth({
       if (user) {
         token.id = user.id;
         token.role = user.role; 
+        token.email=user.email
         console.log(user.role);
       }
       return token;
@@ -45,6 +46,7 @@ export const handler = NextAuth({
     async session({ session, token }) {
       session.user.id = token.id;
       session.user.role = token.role; 
+      session.user.email=token.email;
       console.log(token.role);
       return session;
     }
