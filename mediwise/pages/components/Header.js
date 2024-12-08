@@ -79,6 +79,10 @@ export function Header() {
     console.log('Search submitted:', searchInputRef.current?.value);
     setIsSearchExpanded(false);
   };
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  
   if(status==="loading")
     {
   
@@ -110,16 +114,23 @@ export function Header() {
             <Link href="/About" className={styles.headerNavLink}>About Us</Link>
           </nav>
           <div className={styles.headerActions}>
-          <div className={styles.searchContainer}>
-            <Search className={styles.searchIcon} />
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className={styles.searchInput}
-            />
-          </div>
+          <div className={`${styles.searchContainer} ${isSearchExpanded ? styles.expanded : ''}`}>
+      <button className={styles.headerIcon} onClick={handleSearchToggle}>
+        <Search size={24} />
+      </button>
+      {isSearchExpanded && (
+        <form onSubmit={handleSearchSubmit} className={styles.searchForm}>
+          <input
+            ref={searchInputRef}
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className={styles.searchInput}
+          />
+        </form>
+      )}
+    </div>
             <button className={styles.headerIcon} onClick={()=>setIsCartOpen(true)}>
               <ShoppingCart size={24} />
             {context.items.length>0?(
