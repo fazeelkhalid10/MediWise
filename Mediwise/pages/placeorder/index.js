@@ -3,21 +3,18 @@ import { useContext, useRef } from 'react';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { useSession } from 'next-auth/react';
+import styles from '@/styles/placeorder.module.css';
 
 export default function PlaceOrder() {
-  // Accessing cart context
   const context = useContext(CartContext);
-  const {data:session,status}=useSession();
-  // Refs for form inputs
+  const { data: session, status } = useSession();
   const nameRef = useRef();
   const emailRef = useRef();
   const addressRef = useRef();
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Access form data using refs
     const formData = {
       name: nameRef.current.value,
       email: emailRef.current.value,
@@ -32,111 +29,58 @@ export default function PlaceOrder() {
     context.items.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
-    <>
-    <Header session={session}/>
-    <div style={styles.container}>
-      {/* Left: Order Form */}
-      <div style={styles.left}>
-        <h2>Place Your Order</h2>
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <label>
-            Name:
-            <input type="text" ref={nameRef} required style={styles.input} />
-          </label>
-          <label>
-            Email:
-            <input type="email" ref={emailRef} required style={styles.input} />
-          </label>
-          <label>
-            Address:
-            <textarea ref={addressRef} required style={styles.textarea} />
-          </label>
-          <button type="submit" style={styles.button}>
-            Place Order
-          </button>
-        </form>
-      </div>
+    <div className={styles.pageContainer}>
+      <Header session={session} />
+      <main className={styles.mainContent}>
+        <div className={styles.orderContainer}>
+          <div className={styles.formSection}>
+            <h2 className={styles.sectionTitle}>Place Your Order</h2>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.label}>Name</label>
+                <input type="text" id="name" ref={nameRef} required className={styles.input} />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="email" className={styles.label}>Email</label>
+                <input type="email" id="email" ref={emailRef} required className={styles.input} />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="address" className={styles.label}>Address</label>
+                <textarea id="address" ref={addressRef} required className={styles.textarea} />
+              </div>
+              <button type="submit" className={styles.submitButton}>
+                Place Order
+              </button>
+            </form>
+          </div>
 
-      {/* Right: Cart Summary */}
-      <div style={styles.right}>
-        <h2>Your Cart</h2>
-        {context.items.length > 0 ? (
-          <>
-            <ul style={styles.cartList}>
-              {context.items.map((item) => (
-                <li key={item.id} style={styles.cartItem}>
-                  <span>{item.name}</span>
-                  <span>
-                    {item.quantity} × ${item.price}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <h3>Total: ${calculateTotal()}</h3>
-          </>
-        ) : (
-          <p>Your cart is empty.</p>
-        )}
-      </div>
+          <div className={styles.cartSection}>
+            <h2 className={styles.sectionTitle}>Your Cart</h2>
+            {context.items.length > 0 ? (
+              <>
+                <ul className={styles.cartList}>
+                  {context.items.map((item) => (
+                    <li key={item.id} className={styles.cartItem}>
+                      <span className={styles.itemName}>{item.name}</span>
+                      <span className={styles.itemDetails}>
+                        {item.quantity} × ${item.price.toFixed(2)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <div className={styles.totalSection}>
+                  <h3 className={styles.totalText}>Total</h3>
+                  <span className={styles.totalAmount}>${calculateTotal().toFixed(2)}</span>
+                </div>
+              </>
+            ) : (
+              <p className={styles.emptyCart}>Your cart is empty.</p>
+            )}
+          </div>
+        </div>
+      </main>
+      <Footer />
     </div>
-
-    <Footer/></>
   );
 }
 
-const styles = {
-    container: {
-        display: 'flex',
-        gap: '2rem',
-        padding: '2rem',
-        marginTop: '2rem', // Add margin from the top
-      },
-  left: {
-    flex: 1,
-    backgroundColor: '#f9f9f9',
-    padding: '1rem',
-    borderRadius: '8px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
-  input: {
-    padding: '0.5rem',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    width: '100%',
-  },
-  textarea: {
-    padding: '0.5rem',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    width: '100%',
-    height: '80px',
-  },
-  button: {
-    padding: '0.7rem',
-    backgroundColor: '#0070f3',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  right: {
-    flex: 1,
-    backgroundColor: '#f9f9f9',
-    padding: '1rem',
-    borderRadius: '8px',
-  },
-  cartList: {
-    listStyle: 'none',
-    padding: 0,
-  },
-  cartItem: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '0.5rem 0',
-    borderBottom: '1px solid #eee',
-  },
-};

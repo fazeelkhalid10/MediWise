@@ -1,205 +1,245 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 4rem;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 2rem 0;
+  background-color: #f5f5f5;
+}
+
 .productDetails {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-  
-  .productImage {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .productInfo {
-    display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.productImageContainer {
+  flex: 1;
+  position: relative;
+  height: 400px;
+  min-width: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.productImage {
+  object-fit: cover;
+}
+
+.productInfo {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productName {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #009688;
+  margin-bottom: 0.5rem;
+}
+
+.productCategory {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.productPrice {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #009688;
+  margin-bottom: 1rem;
+}
+
+.productDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.productStock {
+  font-size: 1rem;
+  color: #28a745;
+  margin-bottom: 1.5rem;
+}
+
+.productActions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.addToCartButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addToCartButton:hover {
+  background-color: #00796b;
+}
+
+.wishlistButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #009688;
+  border: 2px solid #009688;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.wishlistButton:hover {
+  background-color: #009688;
+  color: white;
+}
+
+.productReviews {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.productReviews h2 {
+  font-size: 2rem;
+  color: #009688;
+  margin-bottom: 1.5rem;
+}
+
+.review {
+  border-bottom: 1px solid #eee;
+  padding: 1.5rem 0;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.reviewUser {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.reviewRating {
+  display: flex;
+}
+
+.starFilled {
+  fill: #ffc107;
+  stroke: #ffc107;
+}
+
+.starEmpty {
+  fill: none;
+  stroke: #ffc107;
+}
+
+.reviewComment {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.commentForm {
+  margin-top: 2rem;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.commentForm h3 {
+  font-size: 1.5rem;
+  color: #009688;
+  margin-bottom: 1.5rem;
+}
+
+.ratingInput {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.ratingInput label {
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.ratingSelect {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #009688;
+  font-size: 1rem;
+  color: #333;
+}
+
+.commentTextarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #009688;
+  margin-bottom: 1.5rem;
+  resize: vertical;
+  font-size: 1rem;
+  color: #333;
+}
+
+.submitCommentButton {
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitCommentButton:hover {
+  background-color: #00796b;
+}
+
+@media (max-width: 768px) {
+  .productDetails {
     flex-direction: column;
   }
-  
-  .productName {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+
+  .productImageContainer {
+    height: 300px;
   }
-  
-  .productCategory {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 1rem;
-  }
-  
-  .productRating {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .starFilled {
-    fill: #ffc107;
-    stroke: #ffc107;
-  }
-  
-  .starEmpty {
-    fill: none;
-    stroke: #ffc107;
-  }
-  
-  .productPrice {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4a90e2;
-    margin-bottom: 1rem;
-  }
-  
-  .productDescription {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-  
-  .productStock {
-    font-size: 0.9rem;
-    color: #28a745;
-    margin-bottom: 1rem;
-  }
-  
-  .productActions {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .addToCartButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .addToCartButton:hover {
-    background-color: #3570b2;
-  }
-  
-  .wishlistButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    color: #4a90e2;
-    border: 1px solid #4a90e2;
-    padding: 0.75rem;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .wishlistButton:hover {
-    background-color: #4a90e2;
-    color: white;
-  }
-  
-  .productReviews {
-    grid-column: 1 / -1;
-  }
-  
-  .productReviews h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .review {
-    border-bottom: 1px solid #eee;
-    padding: 1rem 0;
-  }
-  
-  .reviewHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-  }
-  
-  .reviewUser {
-    font-weight: bold;
-  }
-  
-  .reviewRating {
-    display: flex;
-  }
-  
-  .reviewComment {
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-  
-  .commentForm {
-    margin-top: 2rem;
-    background-color: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
-  }
-  
-  .commentForm h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .ratingInput {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .ratingInput label {
-    margin-right: 0.5rem;
-  }
-  
-  .ratingSelect {
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ced4da;
-  }
-  
-  .commentTextarea {
-    width: 100%;
-    min-height: 100px;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ced4da;
-    margin-bottom: 1rem;
-    resize: vertical;
-  }
-  
-  .submitCommentButton {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submitCommentButton:hover {
-    background-color: #3570b2;
-  }
-  
-  @media (max-width: 768px) {
-    .productDetails {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  
+}
+
