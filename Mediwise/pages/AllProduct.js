@@ -151,7 +151,7 @@ export default function AllProduct() {
           </button>
         )}
 
-        <Link href="/about" className={styles.aboutUsButton}>
+        <Link href="/About" className={styles.aboutUsButton}>
           <MessageCircle size={24} />
         </Link>
       </main>

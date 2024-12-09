@@ -13,6 +13,7 @@ export default function LandingPage(){
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   
   const bannerItems = [
     { id: 1, image: '/img2.png', alt: 'Friday Sale Brochure' },
@@ -46,6 +47,12 @@ export default function LandingPage(){
     );
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
   const goToNext = () => {
     setCurrentBannerIndex((prevIndex) => 
       prevIndex === bannerItems.length - 1 ? 0 : prevIndex + 1
@@ -63,6 +70,8 @@ export default function LandingPage(){
   const bundles = [
 
   ];
+
+  
 const{data:session,status}=useSession();
 
 if(status==="loading")
@@ -137,6 +146,7 @@ return <>Loading...</>
           <div className={styles.seeMoreContainer}>
             <Link href="/AllProduct" className={styles.seeMoreButton}>See More</Link>
           </div>
+          
         </section>
 
         {/* <section className={styles.features}>
@@ -172,6 +182,22 @@ return <>Loading...</>
           </div>
         </section> */}
        
+
+       {showScrollTop && (
+          <button onClick={scrollToTop} className={styles.scrollTopButton}>
+            <ArrowUpCircle size={24} />
+          </button>
+        )}
+        
+        {showScrollTop && (
+          <button onClick={scrollToTop} className={styles.scrollTopButton}>
+            <ArrowUpCircle size={24} />
+          </button>
+        )}
+
+        <Link href="/About" className={styles.aboutUsButton}>
+          <MessageCircle size={24} />
+        </Link>
       </div>
       <Footer/>
     </>

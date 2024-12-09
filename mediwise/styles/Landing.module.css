@@ -207,19 +207,37 @@ none;
   z-index: 1000;
 }
 
-.messageIcon {
-  position: absolute;
-  left: 20px;
+.scrollTopButton,
+.aboutUsButton {
+  position: fixed;
+  right: 20px;
+  background-color: #009688;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
 }
 
 .scrollTopButton {
-  position: absolute;
-  right: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
+  bottom: 80px;
 }
+
+.aboutUsButton {
+  bottom: 20px;
+}
+
+.scrollTopButton:hover,
+.aboutUsButton:hover {
+  background-color: #00796b;
+}
+
 
 @media (max-width: 768px) {
   .itemGrid {
