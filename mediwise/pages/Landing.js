@@ -13,7 +13,7 @@ export default function LandingPage(){
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  
   
   const bannerItems = [
     { id: 1, image: '/img2.png', alt: 'Friday Sale Brochure' },
@@ -183,17 +183,12 @@ return <>Loading...</>
         </section> */}
        
 
-       {showScrollTop && (
-          <button onClick={scrollToTop} className={styles.scrollTopButton}>
-            <ArrowUpCircle size={24} />
-          </button>
-        )}
+       
         
-        {showScrollTop && (
           <button onClick={scrollToTop} className={styles.scrollTopButton}>
             <ArrowUpCircle size={24} />
           </button>
-        )}
+        
 
         <Link href="/About" className={styles.aboutUsButton}>
           <MessageCircle size={24} />
