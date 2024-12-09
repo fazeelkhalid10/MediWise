@@ -5,17 +5,24 @@ import styles from "@/styles/about.module.css";
 import landingStyles from "@/styles/Landing.module.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import {  useSession } from "next-auth/react";
 
 export default function AboutUs() {
   const [complaintSubmitted, setComplaintSubmitted] = useState(false);
   const [questionSubmitted, setQuestionSubmitted] = useState(false);
+  const {data:session,status}=useSession();
 
   const handleComplaintSubmit = (e) => {
     e.preventDefault();
     setComplaintSubmitted(true);
     setTimeout(() => setComplaintSubmitted(false), 3000);
   };
-
+  if(status==="loading")
+    {
+  
+  return <div>Loading...</div>;
+  
+    }
   const handleQuestionSubmit = (e) => {
     e.preventDefault();
     setQuestionSubmitted(true);
