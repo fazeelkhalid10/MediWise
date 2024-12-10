@@ -1,112 +1,194 @@
 .pageContainer {
-    display: flex;
-    padding: 2rem;
-    gap: 2rem;
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+  background-color: #f5f5f5;
+}
+
+.formSection {
+  flex: 1;
+  max-width: 400px;
+}
+
+.tableSection {
+  flex: 2;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  color: #009688;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #009688;
+  padding-bottom: 0.5rem;
+}
+
+.formContainer {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #009688;
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submitButton {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: #009688;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #00796b;
+}
+
+.tableContainer {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table th,
+.table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table th {
+  background-color: #009688;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover {
+  background-color: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    flex-direction: column;
   }
-  
-  .formSection {
-    flex: 1;
-    max-width: 400px;
-  }
-  
+
+  .formSection,
   .tableSection {
-    flex: 2;
+    max-width: 100%;
   }
-  
-  .sectionTitle {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .formContainer {
-    background-color: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .formGroup {
-    margin-bottom: 1rem;
-  }
-  
-  .label {
-    display: block;
-    margin-bottom: 0.25rem;
-    font-weight: bold;
-    color: #555;
-    font-size: 0.9rem;
-  }
-  
-  .input,
-  .textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 0.9rem;
-  }
-  
-  .textarea {
-    min-height: 80px;
-    resize: vertical;
-  }
-  
-  .submitButton {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submitButton:hover {
-    background-color: #3570b2;
-  }
-  
-  .tableContainer {
-    overflow-x: auto;
-  }
-  
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .table th,
-  .table td {
-    padding: 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .table tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  @media (max-width: 768px) {
-    .pageContainer {
-      flex-direction: column;
-    }
-  
-    .formSection,
-    .tableSection {
-      max-width: 100%;
-    }
-  }
-  
-  
+}
+
+/* New styles for file input */
+.fileInput {
+  margin-top: 0.5rem;
+}
+
+.fileInput input[type="file"] {
+  display: none;
+}
+
+.fileInput label {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  background-color: #e0e0e0;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fileInput label:hover {
+  background-color: #d0d0d0;
+}
+
+/* Styles for action buttons in the table */
+.actionButton {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  background-color: #009688;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actionButton:hover {
+  background-color: #00796b;
+}
+
+.removeButton {
+  background-color: #f44336;
+}
+
+.removeButton:hover {
+  background-color: #d32f2f;
+}
+
+.featureButton {
+  padding: 0.5rem 0.75rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #009688;
+}
+
+
+
+.featureButton:hover {
+  background-color: #d32f2f;
+}
+

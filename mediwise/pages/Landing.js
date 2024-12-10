@@ -110,8 +110,8 @@ return <>Loading...</>
 
         <section className={styles.bundles}>
           <h2 className={styles.sectionTitle}>
-            Special Bundles
-            <Package className={styles.sectionIcon} />
+            Featured Products
+            <BadgePercent className={styles.sectionIcon} />
           </h2>
           <div className={styles.itemGrid}>
             {products.filter(x=>x.isfeature===true).map((item) => (

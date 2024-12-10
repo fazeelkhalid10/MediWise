@@ -227,7 +227,7 @@ fetch('/api/makefeature',
                     <td>{medicine.company}</td>
                     <td>${medicine.price.toFixed(2)}</td>
                     <td>{medicine.quantity}</td>
-                    <td><button onClick={()=>makefeature(medicine._id)}>Add to features</button><button onClick={()=>removefeature(medicine._id)}>Remove features</button></td>
+                    <td><button  className={styles.featureButton}  onClick={()=>makefeature(medicine._id)}>Add to features</button><button className={styles.featureButton}  onClick={()=>removefeature(medicine._id)}>Remove features</button></td>
 
                   </tr>
                 ))}
